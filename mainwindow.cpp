@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Color
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::yellow);
+
     //this->setAutoFillBackground(true);
     //this->setPalette(p);
 }

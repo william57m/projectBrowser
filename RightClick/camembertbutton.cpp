@@ -23,6 +23,7 @@ CamembertButton::CamembertButton(int w, int h, int x, int y, int base, int orien
     //this->setPalette(p);
 
 
+    // Put icon
     QLabel  *label_img  = new QLabel(this);
     QPixmap *pixmap_img;
 
@@ -44,7 +45,6 @@ CamembertButton::CamembertButton(int w, int h, int x, int y, int base, int orien
         pixmap_img = new QPixmap(":/ressources/icon/next.png");
         label_img->setGeometry(5,30,20,20); // x - y
         break;
-
     }
 
     label_img->setPixmap(*pixmap_img);
@@ -56,7 +56,7 @@ void CamembertButton::paintEvent(QPaintEvent *)
     {
         QPainter painter(this);
         painter.setRenderHint(QPainter::Antialiasing, true);
-        painter.setOpacity(0.2);
+        painter.setOpacity(0.5);
         painter.setBrush(Qt::black);
         painter.drawPie(x,y,100,100,base*16,orientation*16);
     }
@@ -64,7 +64,7 @@ void CamembertButton::paintEvent(QPaintEvent *)
     {
         QPainter painter(this);
         painter.setRenderHint(QPainter::Antialiasing, true);
-        painter.setOpacity(0.4);
+        painter.setOpacity(0.7);
         painter.setBrush(Qt::black);
         painter.drawPie(x-5,y-5,110,110,base*16,orientation*16);
     }

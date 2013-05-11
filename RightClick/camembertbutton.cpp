@@ -1,6 +1,7 @@
 #include "camembertbutton.h"
 #include <QPainter>
 #include <iostream>
+#include <QLabel>
 
 CamembertButton::CamembertButton(int w, int h, int x, int y, int base, int orientation, QWidget *parent) :
     QWidget(parent), x(x), y(y), base(base), orientation(orientation), i(0)
@@ -20,6 +21,33 @@ CamembertButton::CamembertButton(int w, int h, int x, int y, int base, int orien
     p.setColor(QPalette::Background, Qt::blue);
     //this->setAutoFillBackground(true);
     //this->setPalette(p);
+
+
+    QLabel  *label_img  = new QLabel(this);
+    QPixmap *pixmap_img;
+
+    switch(base)
+    {
+    case 45:
+        pixmap_img = new QPixmap(":/ressources/icon/save.png");
+        label_img->setGeometry(30,15,20,20); // x - y
+        break;
+    case 135:
+        pixmap_img = new QPixmap(":/ressources/icon/back.png");
+        label_img->setGeometry(15,30,20,20); // x - y
+        break;
+    case 225:
+        pixmap_img = new QPixmap(":/ressources/icon/favoris.png");
+        label_img->setGeometry(30,5,20,20); // x - y
+        break;
+    case 315:
+        pixmap_img = new QPixmap(":/ressources/icon/next.png");
+        label_img->setGeometry(5,30,20,20); // x - y
+        break;
+
+    }
+
+    label_img->setPixmap(*pixmap_img);
 }
 
 void CamembertButton::paintEvent(QPaintEvent *)

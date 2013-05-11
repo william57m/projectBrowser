@@ -1,6 +1,7 @@
 #include "rectbutton.h"
 #include <QPainter>
 #include <iostream>
+#include <QLabel>
 
 RectButton::RectButton(int w, int h, int x, int y, QWidget *parent) :
     QWidget(parent)
@@ -9,6 +10,11 @@ RectButton::RectButton(int w, int h, int x, int y, QWidget *parent) :
     this->x = x;
     this->y = y;
     this->i = 0;
+
+    QLabel  *label_img  = new QLabel(this);
+    QPixmap *pixmap_img = new QPixmap(":/ressources/icon/back.png");
+    //label_img->setPixmap(*pixmap_img);
+
 
     // Set size
     this->setFixedSize(w, h);

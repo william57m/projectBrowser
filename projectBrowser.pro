@@ -22,3 +22,8 @@ SOURCES += \
     CustomWebView/webviewmousetracking.cpp
 
 QT += webkit
+
+OTHER_FILES +=
+
+RESOURCES += \
+    icon.qrc

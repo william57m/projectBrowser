@@ -1,7 +1,6 @@
 #ifndef NAVCONTROLLER_H
 #define NAVCONTROLLER_H
 
-#include <QWidget>
 #include <QPushButton>
 #include <QLineEdit>
 #include "custompushbutton.h"
@@ -12,6 +11,11 @@
 class NavController : public QWidget
 {
     Q_OBJECT
+private:
+    QPushButton *goUrl;
+    QLineEdit *urlBar;
+    CustomBoxLayout *mainLayout;
+
 public:
     // Constructor
     explicit NavController(QWidget *parent = 0);
@@ -21,15 +25,9 @@ public:
     QPushButton* getBtnGoUrl();
     QLineEdit* getUrlBar();
 
-
+    // Event
     void mouseMoveEvent(QMouseEvent *);
 
-private:
-    QPushButton *goUrl;
-
-    QLineEdit *urlBar;
-    CustomBoxLayout *mainLayout;
-    
 signals:
     void survolNavController();
 

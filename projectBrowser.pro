@@ -7,7 +7,8 @@ HEADERS += \
     custompushbutton.h \
     RightClick/camembertbutton.h \
     customboxlayout.h \
-    CustomWebView/webviewmousetracking.h
+    CustomWebView/webviewmousetracking.h \
+    ParamDialogBox/parametersdialogbox.h
 
 SOURCES += \
     RightClick/rightclickmenu.cpp \
@@ -19,7 +20,8 @@ SOURCES += \
     custompushbutton.cpp \
     RightClick/camembertbutton.cpp \
     customboxlayout.cpp \
-    CustomWebView/webviewmousetracking.cpp
+    CustomWebView/webviewmousetracking.cpp \
+    ParamDialogBox/parametersdialogbox.cpp
 
 QT += webkit
 

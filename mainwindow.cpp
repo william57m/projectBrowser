@@ -10,6 +10,25 @@ MainWindow::MainWindow(QWidget *parent) :
     // Declare centralWidget
     QWidget *centralWidget = new QWidget;
 
+    // Init main layout
+    mainLayout = new QVBoxLayout(centralWidget);
+    mainLayout->setContentsMargins(0,0,0,0);
+    mainLayout->setSpacing(0);
+
+    // Menu Bar
+    menuBar = new QMenuBar(this);
+    menuFile = new QMenu("Fichier", this);
+    menuParam = new QAction("Parametres", this);
+
+    this->setMenuBar(menuBar);
+    menuBar->addMenu(menuFile);
+    menuFile->addAction(menuParam);
+
+    connect(menuParam, SIGNAL(triggered()), this, SLOT(showParamDialog()));
+
+    // Init parameters dialog box
+    paramDialog = new ParametersDialogBox;
+
     // Nav controller
     navController = new NavController(this);
     navController->setMaximumHeight(50);
@@ -17,11 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Web engine
     webView = new CustomWebView(this, this);
-
-    // Init main layout
-    mainLayout = new QVBoxLayout(centralWidget);
-    mainLayout->setContentsMargins(0,0,0,0);
-    mainLayout->setSpacing(0);
 
     // Add items to main layout
     mainLayout->addWidget(navController);
@@ -32,15 +46,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect action from navController to webView
     connect(navController->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
-
-    // Color
-    QPalette p(palette());
-    p.setColor(QPalette::Background, Qt::yellow);
-
-    //this->setAutoFillBackground(true);
-    //this->setPalette(p);
 }
 
+// ######################## Show parameters dialog #######################
+void MainWindow::showParamDialog()
+{
+    std::cout << "Show param dialog" << std::endl;
+    paramDialog->exec();
+}
+
+// ############## Detect survol for show/hide navController ##############
 void MainWindow::survolNavController()
 {
      navController->getUrlBar()->setHidden(false);

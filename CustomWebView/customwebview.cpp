@@ -1,6 +1,9 @@
 #include "customwebview.h"
 #include <iostream>
 #include <QBoxLayout>
+#include <string>
+
+using namespace std;
 
 CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
     QWidget(parent)
@@ -85,6 +88,8 @@ void CustomWebView::clickItem(int b)
     {
     case 0:
         std::cout << "Center button" << std::endl;
+        std::cout << "Text: " << webView->selectedText().toStdString().c_str() << std::endl;
+        webView->pageAction(QWebPage::Copy);
         break;
     case 45:
         std::cout << "Top button" << std::endl;

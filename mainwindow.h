@@ -4,12 +4,11 @@
 #include <QMainWindow>
 #include "navcontroller.h"
 #include <QtWebKit>
-#include <QStack>
-#include <QString>
 #include "CustomWebView/customwebview.h"
 #include "RightClick/rightclickmenu.h"
 #include <QVBoxLayout>
-#include <QGridLayout>
+#include <QMenuBar>
+#include <ParamDialogBox/parametersdialogbox.h>
 
 class MainWindow : public QMainWindow
 {
@@ -18,14 +17,21 @@ public:
     explicit MainWindow(QWidget *parent = 0);
 
 private:
+    // Main Layout
+    QVBoxLayout *mainLayout;
+
+    // Menu
+    QMenuBar *menuBar;
+    QMenu *menuFile;
+    QAction *menuParam;
+
+    // Parameters dialog
+    ParametersDialogBox *paramDialog;
+
+    // Nav controller
     NavController *navController;
 
-    QUrl *currentUrl;
-
-    QVBoxLayout *mainLayout;
-    QGridLayout *gridL;
-
-    QWidget *widget;
+    // Web View
     CustomWebView *webView;
     
 signals:
@@ -36,6 +42,8 @@ public slots:
 
     void goURL();
 
+
+    void showParamDialog();
 
 
     //void clickRightWebView(QPoint p);

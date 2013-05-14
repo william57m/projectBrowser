@@ -1,13 +1,8 @@
 #include "customboxlayout.h"
 
-CustomBoxLayout::CustomBoxLayout(QObject *parent) : QHBoxLayout() { }
+CustomBoxLayout::CustomBoxLayout(QObject *parent) : QHBoxLayout() {}
 
-void CustomBoxLayout::leaveEvent (QEvent *event)
+void CustomBoxLayout::mouseMoveEvent(QMouseEvent *)
 {
-    emit leaveEvent();
-}
-
-void CustomBoxLayout::enterEvent (QEvent *event)
-{
-    emit enterEvent();
+    emit moveLayout();
 }

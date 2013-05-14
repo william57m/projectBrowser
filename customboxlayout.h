@@ -2,20 +2,19 @@
 #define CUSTOMBOXLAYOUT_H
 
 #include <QBoxLayout>
+#include <QMouseEvent>
 
 class CustomBoxLayout : public QHBoxLayout
 {
     Q_OBJECT
 public:
     explicit CustomBoxLayout(QObject *parent = 0);
+    void mouseMoveEvent(QMouseEvent *);
 
 protected:
-    void leaveEvent (QEvent *event);
-    void enterEvent (QEvent *event);
 
 signals:
-    void enterEvent();
-    void leaveEvent();
+    void moveLayout();
     
 };
 

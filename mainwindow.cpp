@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(menuParam, SIGNAL(triggered()), this, SLOT(showParamDialog()));
 
     // Init parameters dialog box
-    paramDialog = new ParametersDialogBox;
+    paramDialog = new ParametersDialogBox(this);
 
     // Nav controller
     navController = new NavController(this);
@@ -46,6 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect action from navController to webView
     connect(navController->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
+
+    //connect(webView,SIGNAL(bottomBtnClicked()),favRight->getWebView(webView->getWebView()), SLOT(writeFav()));
 }
 
 // ######################## Show parameters dialog #######################
@@ -55,24 +57,31 @@ void MainWindow::showParamDialog()
     paramDialog->exec();
 }
 
-// ############## Detect survol for show/hide navController ##############
-void MainWindow::survolNavController()
-{
-     navController->getUrlBar()->setHidden(false);
-     navController->getBtnGoUrl()->setHidden(false);
-     navController->setMaximumHeight(50);
-}
-
-void MainWindow::survolWebView()
-{
-    navController->getUrlBar()->setHidden(true);
-    navController->getBtnGoUrl()->setHidden(true);
-    navController->setMaximumHeight(20);
-}
-
 // ##################### Slot to interact on web view #####################
 void MainWindow::goURL()
 {
     webView->getWebView()->load(navController->getUrlBar()->text());
 }
 
+// ############## Detect survol for show/hide navController ############## LUDO
+void MainWindow::survolNavController()
+{
+    // Show navController
+    navController->getUrlBar()->setHidden(false);
+    navController->getBtnGoUrl()->setHidden(false);
+    navController->setMaximumHeight(60);
+
+    // Show favRight
+    navController->showFavRight();
+}
+
+void MainWindow::survolWebView()
+{
+    // Hide navController
+    navController->getUrlBar()->setHidden(true);
+    navController->getBtnGoUrl()->setHidden(true);
+    navController->setMaximumHeight(20);
+
+    // Hide favRight
+    navController->hideFavRight();
+}

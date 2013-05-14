@@ -2,13 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "navcontroller.h"
+
 #include <QtWebKit>
-#include "CustomWebView/customwebview.h"
-#include "RightClick/rightclickmenu.h"
 #include <QVBoxLayout>
 #include <QMenuBar>
-#include <ParamDialogBox/parametersdialogbox.h>
+
+#include "CustomWebView/customwebview.h"
+#include "RightClick/rightclickmenu.h"
+#include "ParamDialogBox/parametersdialogbox.h"
+#include "NavController/navcontroller.h"
+#include "NavController/favright.h"
 
 class MainWindow : public QMainWindow
 {
@@ -44,7 +47,6 @@ public slots:
 
 
     void showParamDialog();
-
 
     //void clickRightWebView(QPoint p);
 

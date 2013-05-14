@@ -2,13 +2,25 @@
 #define PARAMETERSDIALOGBOX_H
 
 #include <QDialog>
-#include <QTabBar>
+#include <QTabWidget>
+#include <QPushButton>
+#include <QWidget>
 
 class ParametersDialogBox : public QDialog
 {
     Q_OBJECT
 private:
-    QTabBar *tabBar;
+    // Tab widget
+    QTabWidget *tabWidget;
+
+    // Widget
+    QWidget *generalWidget;
+    QWidget *persoWidget;
+
+    // Buttons
+    QPushButton *btnApply;
+    QPushButton *btnValide;
+    QPushButton *btnCancel;
 
 public:
     explicit ParametersDialogBox(QWidget *parent = 0);

@@ -4,8 +4,12 @@
 FavRight::FavRight(QWidget *parent) : QWidget(parent)
 {
     /* Open QSetting */
-    settingFavs = new QSettings("UTBMGL40", "BrowserGL");
+    //settingFavs = new QSettings("UTBMGL40", "BrowserGL");
     //std::cout<<"ouverture QSetting"<<std::endl;
+
+
+
+
 
     // Init widget
     favIcon = new CustomWidget(this);
@@ -25,7 +29,7 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
     favIconImg->setText(favS);
     favIconImg->setMouseTracking(true);
     QFont police("calibri");
-    police.setPointSize (26);
+    police.setPointSize (18);
     favIconImg->setFont(police);
     /*-------------*/
 
@@ -48,6 +52,8 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
     // Connection
     //connect(buttonFav,SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
     connect(favWidget, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
+    //connect(buttonFav,SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+
 }
 
 // ############################# Events #############################
@@ -67,12 +73,14 @@ void FavRight::mouseMoveEvent(QMouseEvent *)
 
 void FavRight::showFavWidget()
 {
+
     //std::cout << "Enter favIcon" << std::endl;
 }
 
 void FavRight::hideFavWidget()
 {
-    //std::cout << "Leave favIcon" << std::endl;
+    //load bookmarks
+    this->readFav();
 
     // Hide favWidget
     this->favWidget->setHidden(true);
@@ -94,33 +102,6 @@ FavRight *FavRight::getWebView(QWebView *qWv)
     return this;
 }
 
-void FavRight::writeFav()
-{
-
-    //Load Fav from QSetting
-    settingFavs = new QSettings("UTBMGL40", "BrowserGL");
-    urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
-    titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());
-    nbClick =  new QStringList(settingFavs->value("Favoris/nbClick").value<QStringList>());
-
-    std::cout<<"Taille favoris : "<<urlFav->size()<<std::endl;
-
-    //Si favoris non définis
-    if (!titleFav->contains(view->title().toStdString().c_str(), Qt::CaseInsensitive))
-    {
-        std::cout<<"Ecriture de favoris"<<std::endl;
-
-        std::cout<<view->title().toStdString()<<std::endl;
-        std::cout<<view->url().toString().toStdString()<<std::endl;
-
-        settingFavs->setValue("Favoris/titre",*titleFav<<view->title().toStdString().c_str());
-        settingFavs->setValue("Favoris/url", *urlFav<<view->url().toString());
-        settingFavs->setValue("Favoris/nbClick", *nbClick<<0);
-
-    }
-    else
-        std::cout<<"Deja en favoris"<<std::endl;
-}
 
 void FavRight::readFav()
 {
@@ -140,11 +121,11 @@ void FavRight::readFav()
             QPushButton *btnAddFav[urlFav->size()];
             btnAddFav[i] = new QPushButton(titleFav->at(i));
 
-            QPainter painter(this);
+            /*  QPainter painter(this);
             painter.setRenderHint(QPainter::Antialiasing, true);
             //painter.setOpacity(0.5);
             painter.setBrush(Qt::black);
-            //btnAddFav[i]->pa
+            //btnAddFav[i]->pa*/
 
             buttonFav->addButton(btnAddFav[i],i);
             favsLayout->addWidget(buttonFav->buttons().at(i));
@@ -178,18 +159,34 @@ void FavRight::unLockMutex()
     mutex->unlock();
 }
 
-void FavRight::loadFav(int idxBtn)
+QUrl FavRight::getFavFromBtn(int idxBtn)
 {
 
-    view->load(urlFav->at(idxBtn));
-    QStringList *nbC =  new QStringList(settingFavs->value("Favoris/nbClick").value<QStringList>());
+
+    return urlFav->at(idxBtn);
+
+    /*QStringList *nbC =  new QStringList(settingFavs->value("Favoris/nbClick").value<QStringList>());
     QString iNbC=nbC->at(idxBtn);
     int cTmp = iNbC.toInt();
     cTmp++;
     nbC->replace(idxBtn,QString::number(cTmp));
     settingFavs->setValue("Favoris/nbClick", *nbC);
-    std::cout<<"nb clique : "<<cTmp<<std::endl;
+    std::cout<<"nb clique : "<<cTmp<<std::endl;*/
 
     // nbClick->at(idxBtn)=nbClick->at(idxBtn)+1;
     //settingFavs->setValue("Favoris/nbClick", *nbClick->at(idxBtn));
 }
+
+
+
+QUrl FavRight::getUrl()
+{
+    return passedUrl;
+}
+
+QButtonGroup *FavRight::getButtonFav()
+{
+    return buttonFav;
+}
+
+

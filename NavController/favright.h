@@ -13,7 +13,7 @@
 #include<QMutex>
 #include<QSettings>
 #include<QButtonGroup>
-//#include"favmanage.h"
+#include "../CustomWebView/customwebview.h"
 #include "customwidget.h"
 
 using namespace std;
@@ -38,14 +38,19 @@ public:
     bool widgetOut;
     void wichBtn(QString);
 
+    QButtonGroup *getButtonFav();
+
     // Getters
     FavRight *getWebView(QWebView *qWv);
-    //FavManage *getFavManage();
-    //QPushButton *getBtnAddFav();
+    QUrl getUrl();
 
 private:
     // Mutex
     QMutex *mutex;
+
+    CustomWebView *webView;
+
+    QUrl passedUrl;
 
     // Widget
     CustomWidget *favIcon;
@@ -72,12 +77,12 @@ signals :
     void clickedAddFav();
     void leaveFavRight();
 
+
+
 public slots :
-    void writeFav();
-    void loadFav(int idxFav);
+    QUrl getFavFromBtn(int idxFav);
     void showFavWidget();
     void hideFavWidget();
-
 };
 
 #endif // FAVRIGHT_H

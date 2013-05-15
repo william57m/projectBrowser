@@ -5,6 +5,8 @@
 #include <QWebView>
 #include "../RightClick/rightclickmenu.h"
 #include "webviewmousetracking.h"
+#include <QSettings>
+
 
 class CustomWebView : public QWidget
 {
@@ -13,6 +15,12 @@ private:
     WebViewMouseTracking *webView;
     RightClickMenu *rcm;
     QWidget *realParent;
+
+    //LUDO
+    QSettings *settingFavs;
+    QStringList *urlFav;
+    QStringList *titleFav;
+    QStringList *nbClick;
 
 public:
     // Constructor

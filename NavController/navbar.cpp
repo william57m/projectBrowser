@@ -1,5 +1,4 @@
 #include "navbar.h"
-#include <QBoxLayout>
 
 NavBar::NavBar(QWidget *parent) :
     QWidget(parent)

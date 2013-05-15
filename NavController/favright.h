@@ -14,6 +14,8 @@
 #include <QMutex>
 #include<QSettings>
 #include<QButtonGroup>
+#include "customwidget.h"
+
 using namespace std;
 
 
@@ -24,10 +26,9 @@ class FavRight : public QWidget
 public:
     bool tryLockMutex();
     void unLockMutex();
-    //FavRight();
+
     explicit FavRight(QWidget *parent = 0);
-    QLabel *getFavIcon();
-    QWidget *getFavWidget();
+
     void mouseMoveEvent(QMouseEvent *);
     void defineFavWiget(QPoint p);
     //QPushButton *getBtnAddFav();
@@ -35,18 +36,20 @@ public:
 
     void readFav();
 
+    bool widgetOut;
+
     FavRight *getWebView(QWebView *qWv);
     //FavManage *getFavManage();
 
     void wichBtn(QString);
 
-
-    void leaveEvent (QEvent *event);
-
 private:
     QMutex *mutex;
-    QLabel *favIcon;
-    QWidget *favWidget;
+    QLabel *favIconImg;
+
+    CustomWidget *favIcon;
+    CustomWidget *favWidget;
+
     QGridLayout *mainLayout;
 
     QGridLayout *favsLayout;
@@ -76,6 +79,8 @@ public slots :
     void writeFav();
     void loadFav(int idxFav);
 
+    void showFavWidget();
+    void hideFavWidget();
 
 };
 

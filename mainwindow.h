@@ -10,8 +10,7 @@
 #include "CustomWebView/customwebview.h"
 #include "RightClick/rightclickmenu.h"
 #include "ParamDialogBox/parametersdialogbox.h"
-#include "NavController/navcontroller.h"
-#include "NavController/favright.h"
+#include "NavController/navbar.h"
 
 class MainWindow : public QMainWindow
 {
@@ -32,7 +31,7 @@ private:
     ParametersDialogBox *paramDialog;
 
     // Nav controller
-    NavController *navController;
+    NavBar *navBar;
 
     // Web View
     CustomWebView *webView;
@@ -40,15 +39,12 @@ private:
 signals:
     
 public slots:
-    void survolNavController();
+    void survolNavBar();
     void survolWebView();
 
     void goURL();
 
-
     void showParamDialog();
-
-    //void clickRightWebView(QPoint p);
 
 };
 

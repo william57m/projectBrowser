@@ -3,15 +3,13 @@
 
 #include <QPushButton>
 #include <QLineEdit>
-#include "custompushbutton.h"
-#include "customboxlayout.h"
 
+#include "custompushbutton.h"
+#include "favright.h"
 #include <QPaintEvent>
 #include <QLabel>
 #include <QGridLayout>
 #include <QBoxLayout>
-
-#include "favright.h"
 
 
 class NavController : public QWidget
@@ -19,16 +17,11 @@ class NavController : public QWidget
     Q_OBJECT
 private:
     // Main Layout
-    QGridLayout  *mainLayout;
-
-    // Layout URL Bar
-    CustomBoxLayout *urlLayout;
+    QHBoxLayout  *mainLayout;
 
     // Items
     QPushButton *goUrl;
     QLineEdit *urlBar;
-    FavRight *favRight;
-
 
 public:
     // Constructor
@@ -42,16 +35,10 @@ public:
     // Event
     void mouseMoveEvent(QMouseEvent *);
 
-    // Show/Hide FavRight
-    void hideFavRight();
-    void showFavRight();
-
 signals:
     void survolNavController();
 
 public slots:
-    void survolFavIcon();
-    void hideFavRight2();
     
 };
 

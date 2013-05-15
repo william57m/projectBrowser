@@ -1,72 +1,97 @@
 #include "favright.h"
+#include <iostream>
 
 FavRight::FavRight(QWidget *parent) : QWidget(parent)
 {
-
-    /*Open QSetting*/
+    /* Open QSetting */
     settingFavs = new QSettings("UTBMGL40", "BrowserGL");
-    std::cout<<"ouverture QSetting"<<std::endl;
-    /*-------------*/
+    //std::cout<<"ouverture QSetting"<<std::endl;
 
-    /*add fav icon */
+    // Init widget
+    favIcon = new CustomWidget(this);
+    favIcon->setFixedSize(50,50);
+    favWidget = new CustomWidget(this);
+
+    favIcon->setMouseTracking(true);
+
+    // Init this
+    this->setMouseTracking(true);
+    this->setFixedSize(50,50);
+
+    /* Init fav icon */
     QString favS;
     favS= QChar(0x05,0x26);
-    favIcon = new QLabel();
-    favIcon->setText(favS);
+    favIconImg = new QLabel(favIcon);
+    favIconImg->setText(favS);
+    favIconImg->setMouseTracking(true);
     QFont police("calibri");
     police.setPointSize (26);
-    favIcon->setFont(police);
+    favIconImg->setFont(police);
     /*-------------*/
 
-    /*Init layout*/
-    mainLayout = new QGridLayout();
-    this->setLayout(mainLayout);
-    /*--------------*/
+    // Button
+    buttonFav = new QButtonGroup(favWidget);
+    isButtonFavCreated = true;
 
-    //WILL
-    this->setFixedSize(50,50);
-    //this->setStyleSheet("background-color: #800000");
+    // Mutex
+    mutex = new QMutex();
 
     // Color
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::yellow);
     this->setAutoFillBackground(true);
     this->setPalette(p);
+    p.setColor(QPalette::Background, Qt::blue);
+    favIcon->setAutoFillBackground(true);
+    favIcon->setPalette(p);
 
-    /*Init widget*/
-    favWidget = new QWidget();
-    mainLayout->addWidget(favIcon,0,0);
-    /*-----------*/
-
-    buttonFav = new QButtonGroup(favWidget);
-    isButtonFavCreated = true;
-
-    mutex = new QMutex();
-
-    connect(this, SIGNAL(survolFavIcon()), this->parent(), SLOT(survolFavIcon()));
-    connect(buttonFav,SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+    // Connection
+    //connect(buttonFav,SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+    //connect(favIcon, SIGNAL(enterEvent()), this, SLOT(showFavWidget()));
+    //connect(favIcon, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
+    connect(favWidget, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
 }
 
+// ############################# Events #############################
 void FavRight::mouseMoveEvent(QMouseEvent *)
 {
-    emit survolFavIcon();
+    //std::cout << "Mouse move event" << std::endl;
+
+    // Show favWidget
+    this->favWidget->setHidden(false);
+
+
+    // Get cursor position
+    QPoint pPara(QCursor::pos().x(), QCursor::pos().y());
+
+    this->defineFavWiget(pPara);
+    //this->readFav();
 }
 
-QLabel *FavRight::getFavIcon()
+void FavRight::showFavWidget()
 {
-    return favIcon;
+    //std::cout << "Enter favIcon" << std::endl;
 }
 
-QWidget *FavRight::getFavWidget()
+void FavRight::hideFavWidget()
 {
-    return favWidget;
+    std::cout << "Leave favIcon" << std::endl;
+
+    this->favWidget->setHidden(true);
+
+    this->unLockMutex();
+
 }
 
+
+
+// ############################# Others #############################
 void FavRight::defineFavWiget(QPoint p)
 {
     favWidget->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
     favWidget->setGeometry(p.x()-300,p.y(),300,500);
 }
+
 
 FavRight *FavRight::getWebView(QWebView *qWv)
 {
@@ -172,16 +197,4 @@ void FavRight::loadFav(int idxBtn)
 
     // nbClick->at(idxBtn)=nbClick->at(idxBtn)+1;
     //settingFavs->setValue("Favoris/nbClick", *nbClick->at(idxBtn));
-
-
-}
-
-// Event
-
-void FavRight::leaveEvent (QEvent *event)
-{
-    this->setHidden(true);
-    this->setMaximumSize(9999,10);
-    this->unLockMutex();
-    //emit leaveFavRight();
 }

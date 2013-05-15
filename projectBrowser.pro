@@ -9,7 +9,9 @@ HEADERS += \
     CustomWebView/webviewmousetracking.h \
     ParamDialogBox/parametersdialogbox.h \
     NavController/favright.h \
-    customboxlayout.h
+    customboxlayout.h \
+    customwidget.h \
+    NavController/navbar.h
 
 SOURCES += \
     RightClick/rightclickmenu.cpp \
@@ -23,7 +25,9 @@ SOURCES += \
     CustomWebView/webviewmousetracking.cpp \
     ParamDialogBox/parametersdialogbox.cpp \
     NavController/favright.cpp \
-    customboxlayout.cpp
+    customboxlayout.cpp \
+    customwidget.cpp \
+    NavController/navbar.cpp
 
 QT += webkit
 

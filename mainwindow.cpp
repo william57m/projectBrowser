@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QMessageBox>
 #include <QGridLayout>
+#include "NavController/navbar.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -30,22 +31,22 @@ MainWindow::MainWindow(QWidget *parent) :
     paramDialog = new ParametersDialogBox(this);
 
     // Nav controller
-    navController = new NavController(this);
-    navController->setMaximumHeight(50);
-    navController->setMouseTracking(true);
+    navBar = new NavBar(this);
+    navBar->setMaximumHeight(50);
+    navBar->setMouseTracking(true);
 
     // Web engine
     webView = new CustomWebView(this, this);
 
     // Add items to main layout
-    mainLayout->addWidget(navController);
+    mainLayout->addWidget(navBar);
     mainLayout->addWidget(webView);
 
     // Set central widget
     this->setCentralWidget(centralWidget);
 
     // Connect action from navController to webView
-    connect(navController->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
+    connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
 
     //connect(webView,SIGNAL(bottomBtnClicked()),favRight->getWebView(webView->getWebView()), SLOT(writeFav()));
 }
@@ -60,28 +61,33 @@ void MainWindow::showParamDialog()
 // ##################### Slot to interact on web view #####################
 void MainWindow::goURL()
 {
-    webView->getWebView()->load(navController->getUrlBar()->text());
+    webView->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
 }
 
-// ############## Detect survol for show/hide navController ############## LUDO
-void MainWindow::survolNavController()
+// ################## Detect survol for show/hide navBar ##################
+void MainWindow::survolNavBar()
 {
     // Show navController
-    navController->getUrlBar()->setHidden(false);
-    navController->getBtnGoUrl()->setHidden(false);
-    navController->setMaximumHeight(60);
+    //navBar->getNavController()->setHidden(false);
+    navBar->getNavController()->getUrlBar()->setHidden(false);
+    navBar->getNavController()->getBtnGoUrl()->setHidden(false);
+    navBar->getNavController()->setMaximumHeight(50);
 
-    // Show favRight
-    navController->showFavRight();
+    navBar->getFavRight()->setHidden(false);
+
+    navBar->setMaximumHeight(50);
 }
 
 void MainWindow::survolWebView()
 {
-    // Hide navController
-    navController->getUrlBar()->setHidden(true);
-    navController->getBtnGoUrl()->setHidden(true);
-    navController->setMaximumHeight(20);
 
-    // Hide favRight
-    navController->hideFavRight();
+    // Hide navController
+    //navBar->getNavController()->setHidden(true);
+    navBar->getNavController()->getUrlBar()->setHidden(true);
+    navBar->getNavController()->getBtnGoUrl()->setHidden(true);
+    navBar->getNavController()->setMaximumHeight(0);
+
+    //navBar->getFavRight()->setHidden(true);
+
+    navBar->setMaximumHeight(20);
 }

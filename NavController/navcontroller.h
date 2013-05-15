@@ -3,14 +3,9 @@
 
 #include <QPushButton>
 #include <QLineEdit>
-
+#include <QBoxLayout>
 #include "custompushbutton.h"
 #include "favright.h"
-#include <QPaintEvent>
-#include <QLabel>
-#include <QGridLayout>
-#include <QBoxLayout>
-
 
 class NavController : public QWidget
 {
@@ -31,15 +26,6 @@ public:
     QPushButton* getBtnRefresh();
     QPushButton* getBtnGoUrl();
     QLineEdit* getUrlBar();
-
-    // Event
-    void mouseMoveEvent(QMouseEvent *);
-
-signals:
-    void survolNavController();
-
-public slots:
-    
 };
 
 #endif // NAVCONTROLLER_H

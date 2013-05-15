@@ -3,61 +3,59 @@
 #include<QWidget>
 #include<QLabel>
 #include<QLayout>
-#include <QBoxLayout>
-#include <iostream>
-#include <QPainter>
-#include <stdio.h>
-#include <QPushButton>
-//#include"favmanage.h"
-#include <QWebView>
-#include <QStringList>
-#include <QMutex>
+#include<QBoxLayout>
+#include<iostream>
+#include<QPainter>
+#include<stdio.h>
+#include<QPushButton>
+#include<QWebView>
+#include<QStringList>
+#include<QMutex>
 #include<QSettings>
 #include<QButtonGroup>
+//#include"favmanage.h"
 #include "customwidget.h"
 
 using namespace std;
-
 
 class FavRight : public QWidget
 {
     Q_OBJECT
 
 public:
+    // Constructor
+    explicit FavRight(QWidget *parent = 0);
+
+    // Set mutex
     bool tryLockMutex();
     void unLockMutex();
 
-    explicit FavRight(QWidget *parent = 0);
-
+    // Methods
     void mouseMoveEvent(QMouseEvent *);
     void defineFavWiget(QPoint p);
-    //QPushButton *getBtnAddFav();
     void delButtonFav();
-
     void readFav();
-
     bool widgetOut;
-
-    FavRight *getWebView(QWebView *qWv);
-    //FavManage *getFavManage();
-
     void wichBtn(QString);
 
-private:
-    QMutex *mutex;
-    QLabel *favIconImg;
+    // Getters
+    FavRight *getWebView(QWebView *qWv);
+    //FavManage *getFavManage();
+    //QPushButton *getBtnAddFav();
 
+private:
+    // Mutex
+    QMutex *mutex;
+
+    // Widget
     CustomWidget *favIcon;
     CustomWidget *favWidget;
+    QLabel *favIconImg;
 
-    QGridLayout *mainLayout;
-
+    // Ludo
     QGridLayout *favsLayout;
-
-
     //QPushButton *btnAddFav;
-
-    // QVector<QPushButton*> **btnAddFav;
+    //QVector<QPushButton*> **btnAddFav;
 
     QWebView *view;
     QSettings *settingFavs;
@@ -74,11 +72,9 @@ signals :
     void clickedAddFav();
     void leaveFavRight();
 
-
 public slots :
     void writeFav();
     void loadFav(int idxFav);
-
     void showFavWidget();
     void hideFavWidget();
 

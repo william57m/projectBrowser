@@ -47,8 +47,6 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
 
     // Connection
     //connect(buttonFav,SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
-    //connect(favIcon, SIGNAL(enterEvent()), this, SLOT(showFavWidget()));
-    //connect(favIcon, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
     connect(favWidget, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
 }
 
@@ -59,7 +57,6 @@ void FavRight::mouseMoveEvent(QMouseEvent *)
 
     // Show favWidget
     this->favWidget->setHidden(false);
-
 
     // Get cursor position
     QPoint pPara(QCursor::pos().x(), QCursor::pos().y());
@@ -75,15 +72,14 @@ void FavRight::showFavWidget()
 
 void FavRight::hideFavWidget()
 {
-    std::cout << "Leave favIcon" << std::endl;
+    //std::cout << "Leave favIcon" << std::endl;
 
+    // Hide favWidget
     this->favWidget->setHidden(true);
 
+    // Unlock Mutex
     this->unLockMutex();
-
 }
-
-
 
 // ############################# Others #############################
 void FavRight::defineFavWiget(QPoint p)
@@ -91,7 +87,6 @@ void FavRight::defineFavWiget(QPoint p)
     favWidget->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
     favWidget->setGeometry(p.x()-300,p.y(),300,500);
 }
-
 
 FavRight *FavRight::getWebView(QWebView *qWv)
 {

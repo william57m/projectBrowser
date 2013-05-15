@@ -1,5 +1,4 @@
 #include "navcontroller.h"
-#include <iostream>
 
 NavController::NavController(QWidget *parent) :
     QWidget(parent)
@@ -19,19 +18,11 @@ NavController::NavController(QWidget *parent) :
     mainLayout->addWidget(urlBar);
     mainLayout->addWidget(goUrl);
 
-    // Connexion
-    connect(this, SIGNAL(survolNavController()), this->parent(), SLOT(survolNavController()));
-
     // Color
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::gray);
     this->setAutoFillBackground(true);
     this->setPalette(p);
-}
-
-void NavController::mouseMoveEvent(QMouseEvent *)
-{
-    emit survolNavController();
 }
 
 // ############################# Getters #############################

@@ -48,7 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
 
-
     //Connect to load bm from button
     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
 
@@ -70,9 +69,7 @@ void MainWindow::goURL()
 //LUDO
 void MainWindow::loadFav(int idBtn)
 {
-    //webView->getWebView()->load(url);
     webView->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
-
 }
 
 // ################## Detect survol for show/hide navBar ##################

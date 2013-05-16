@@ -43,6 +43,7 @@ public slots:
     void survolWebView();
 
     void goURL();
+
     //ludo
     void loadFav(int idBtn);
 

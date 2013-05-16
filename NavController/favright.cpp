@@ -121,11 +121,11 @@ void FavRight::readFav()
             QPushButton *btnAddFav[urlFav->size()];
             btnAddFav[i] = new QPushButton(titleFav->at(i));
 
-            /*  QPainter painter(this);
+              QPainter painter(this);
             painter.setRenderHint(QPainter::Antialiasing, true);
             //painter.setOpacity(0.5);
             painter.setBrush(Qt::black);
-            //btnAddFav[i]->pa*/
+
 
             buttonFav->addButton(btnAddFav[i],i);
             favsLayout->addWidget(buttonFav->buttons().at(i));
@@ -162,9 +162,6 @@ void FavRight::unLockMutex()
 QUrl FavRight::getFavFromBtn(int idxBtn)
 {
 
-
-    return urlFav->at(idxBtn);
-
     /*QStringList *nbC =  new QStringList(settingFavs->value("Favoris/nbClick").value<QStringList>());
     QString iNbC=nbC->at(idxBtn);
     int cTmp = iNbC.toInt();
@@ -172,17 +169,12 @@ QUrl FavRight::getFavFromBtn(int idxBtn)
     nbC->replace(idxBtn,QString::number(cTmp));
     settingFavs->setValue("Favoris/nbClick", *nbC);
     std::cout<<"nb clique : "<<cTmp<<std::endl;*/
-
     // nbClick->at(idxBtn)=nbClick->at(idxBtn)+1;
     //settingFavs->setValue("Favoris/nbClick", *nbClick->at(idxBtn));
+    return urlFav->at(idxBtn);
+
 }
 
-
-
-QUrl FavRight::getUrl()
-{
-    return passedUrl;
-}
 
 QButtonGroup *FavRight::getButtonFav()
 {

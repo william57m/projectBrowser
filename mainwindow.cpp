@@ -48,7 +48,10 @@ MainWindow::MainWindow(QWidget *parent) :
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
 
-    //connect(webView,SIGNAL(bottomBtnClicked()),favRight->getWebView(webView->getWebView()), SLOT(writeFav()));
+
+    //Connect to load bm from button
+    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+
 }
 
 // ######################## Show parameters dialog #######################
@@ -62,6 +65,14 @@ void MainWindow::showParamDialog()
 void MainWindow::goURL()
 {
     webView->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
+}
+
+//LUDO
+void MainWindow::loadFav(int idBtn)
+{
+    //webView->getWebView()->load(url);
+    webView->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
+
 }
 
 // ################## Detect survol for show/hide navBar ##################
@@ -91,3 +102,5 @@ void MainWindow::survolWebView()
 
     navBar->setMaximumHeight(20);
 }
+
+

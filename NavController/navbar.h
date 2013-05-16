@@ -2,6 +2,7 @@
 #define NAVBAR_H
 
 #include <QWidget>
+#include <QBoxLayout>
 #include "navcontroller.h"
 #include "favright.h"
 

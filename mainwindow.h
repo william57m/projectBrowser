@@ -47,6 +47,9 @@ public slots:
 
     void showParamDialog();
 
+    void changeTittle(QString urlTitle);
+
+
     //ludo
     void loadFav(int idBtn);
     void delFav(int idxBtnDel);

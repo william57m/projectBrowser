@@ -8,7 +8,7 @@ NavBar::NavBar(QWidget *parent) :
     favRight = new FavRight(this);
 
     // Main Layout
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    mainLayout = new QHBoxLayout(this);
     this->setLayout(mainLayout);
 
     // Put items into layout
@@ -18,7 +18,6 @@ NavBar::NavBar(QWidget *parent) :
 
     // Connect
     connect(this, SIGNAL(survolNavBar()), this->parent(), SLOT(survolNavBar()));
-
 
     // Color
     QPalette p(palette());
@@ -37,19 +36,6 @@ void NavBar::mouseMoveEvent(QMouseEvent *)
 NavController* NavBar::getNavController()
 {
     return navController;
-}
-void NavBar::delFavright()
-{
-    //mainLayout->removeWidget(navController);
-    //mainLayout->removeWidget(favRight);
-    delete favRight;
-}
-
-void NavBar::createFavright()
-{
-    favRight = new FavRight(this);
-   // mainLayout->addWidget(navController);
-    //mainLayout->addWidget(favRight);
 }
 
 FavRight* NavBar::getFavRight()

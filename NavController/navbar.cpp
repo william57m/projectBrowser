@@ -19,6 +19,7 @@ NavBar::NavBar(QWidget *parent) :
     // Connect
     connect(this, SIGNAL(survolNavBar()), this->parent(), SLOT(survolNavBar()));
 
+
     // Color
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::red);
@@ -42,3 +43,4 @@ FavRight* NavBar::getFavRight()
 {
     return favRight;
 }
+

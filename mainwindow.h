@@ -44,11 +44,11 @@ public slots:
 
     void goURL();
 
+    void showParamDialog();
+
     //ludo
     void loadFav(int idBtn);
-
-
-    void showParamDialog();
+    void delFav(int idxBtnDel);
 
 };
 

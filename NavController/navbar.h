@@ -27,7 +27,6 @@ public:
 signals:
     void survolNavBar();
     
-public slots:
     
 };
 

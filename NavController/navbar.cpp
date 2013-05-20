@@ -38,6 +38,19 @@ NavController* NavBar::getNavController()
 {
     return navController;
 }
+void NavBar::delFavright()
+{
+    //mainLayout->removeWidget(navController);
+    //mainLayout->removeWidget(favRight);
+    delete favRight;
+}
+
+void NavBar::createFavright()
+{
+    favRight = new FavRight(this);
+   // mainLayout->addWidget(navController);
+    //mainLayout->addWidget(favRight);
+}
 
 FavRight* NavBar::getFavRight()
 {

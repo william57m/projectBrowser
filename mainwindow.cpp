@@ -49,6 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
 
+    //Replace url
+    connect(webView->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
+
     //Connect to load bm from button
     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
     connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
@@ -68,14 +71,25 @@ void MainWindow::goURL()
     webView->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
 }
 
+void MainWindow::changeURL()
+{
+    navBar->getNavController()->getUrlBar()->setText(webView->getWebView()->url().toString());
+}
+
+
+
 //LUDO
 void MainWindow::loadFav(int idBtn)
 {
     webView->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
+    navBar->delFavright();
+    navBar->createFavright();
 }
 void MainWindow::delFav(int idxBtnDel)
 {
     navBar->getFavRight()->deleteFavFromBtn(idxBtnDel);
+    navBar->delFavright();
+    navBar->createFavright();
 }
 
 // ################## Detect survol for show/hide navBar ##################
@@ -90,6 +104,7 @@ void MainWindow::survolNavBar()
     navBar->getFavRight()->setHidden(false);
 
     navBar->setMaximumHeight(50);
+
 }
 
 void MainWindow::survolWebView()

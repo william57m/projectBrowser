@@ -41,6 +41,7 @@ signals:
 public slots:
     void survolNavBar();
     void survolWebView();
+    void changeURL();
 
     void goURL();
 

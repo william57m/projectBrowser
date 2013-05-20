@@ -16,6 +16,7 @@
 #include<QVector>
 #include "../CustomWebView/customwebview.h"
 #include "customwidget.h"
+#include<QScrollArea>
 
 using namespace std;
 
@@ -60,6 +61,7 @@ private:
 
     // Ludo
     QGridLayout *favsLayout;
+    QScrollArea *scrollFav;
 
     QRect dimBar;
 

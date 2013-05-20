@@ -114,6 +114,11 @@ void FavRight::readFav()
     urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
     titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());
     favsLayout = new QGridLayout();
+    //Scroll
+    scrollFav = new QScrollArea();
+
+    scrollFav->setLayout(favsLayout);
+
 
     favWidget->setLayout(favsLayout);
     std::cout<<"Dans readFav : "<<urlFav->size()<<std::endl;
@@ -124,7 +129,7 @@ void FavRight::readFav()
     /* Init fav icon */
     QString favS;
     favS= QChar(0x17,0x27);
-     /*-------------*/
+    /*-------------*/
     for(int i=0; i<urlFav->size();++i)
     {
         QPushButton *btnAddFav[urlFav->size()];
@@ -136,10 +141,12 @@ void FavRight::readFav()
 
         btnAddFav[i]->setStyleSheet("background-color:#c5b3bd ; border-radius: 2");
         btnDel[i]->setStyleSheet("background-color:#c5b3bd ; border-radius: 2");
+
         grpButtonFav->addButton(btnAddFav[i],i);
         grpButtonFavDel->addButton(btnDel[i],i);
-        favsLayout->addWidget(grpButtonFav->buttons().at(i),i,0,0,4);
-        favsLayout->addWidget(grpButtonFavDel->buttons().at(i),i,5,0,1);
+
+        favsLayout->addWidget(grpButtonFav->buttons().at(i),i,0,1,5);
+        favsLayout->addWidget(grpButtonFavDel->buttons().at(i),i,6,1,1);
 
         /*pushBtnInstanciedFav->addButton(btnAddFav[i],i);
         pushBtnInstanciedFavDel->addButton(btnDel[i],i);*/

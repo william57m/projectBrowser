@@ -23,6 +23,7 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
     favIconImg->setGeometry(0,10,30,30);
     favIconImg->setText(favS);
     favIconImg->setMouseTracking(true);
+    favIcon->setGeometry(0,10,30, 30);
     QFont police("calibri");
     police.setPointSize (30);
     favIconImg->setFont(police);
@@ -35,11 +36,11 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
     // Color
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::yellow);
-    this->setAutoFillBackground(true);
-    this->setPalette(p);
+    //this->setAutoFillBackground(true);
+    //this->setPalette(p);
     p.setColor(QPalette::Background, Qt::blue);
-    favIcon->setAutoFillBackground(true);
-    favIcon->setPalette(p);
+    //favIcon->setAutoFillBackground(true);
+    //favIcon->setPalette(p);
 
     // Connection
     connect(favWidget, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));

@@ -7,7 +7,7 @@
 #include <QVBoxLayout>
 #include <QMenuBar>
 
-#include "CustomWebView/customwebview.h"
+#include "CustomWebView/customtabwidget.h"
 #include "RightClick/rightclickmenu.h"
 #include "ParamDialogBox/parametersdialogbox.h"
 #include "NavController/navbar.h"
@@ -34,8 +34,13 @@ private:
     NavBar *navBar;
 
     // Web View
+<<<<<<< HEAD
     CustomWebView *webView;
 
+=======
+    CustomTabWidget *customTabWidget;
+    
+>>>>>>> 03e0413529ac8a5fb0955e4feddc46ceed3a92c8
 
 signals:
     

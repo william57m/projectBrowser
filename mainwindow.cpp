@@ -36,11 +36,11 @@ MainWindow::MainWindow(QWidget *parent) :
     navBar->setMouseTracking(true);
 
     // Web engine
-    webView = new CustomWebView(this, this);
+    customTabWidget = new CustomTabWidget(this);
 
     // Add items to main layout
     mainLayout->addWidget(navBar);
-    mainLayout->addWidget(webView);
+    mainLayout->addWidget(customTabWidget);
 
     // Set central widget
     this->setCentralWidget(centralWidget);
@@ -51,10 +51,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     //Replace url
-    connect(webView->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
-    connect(webView->getWebView(), SIGNAL(titleChanged(QString)),this,SLOT(changeTittle(QString)));
 
+<<<<<<< HEAD
     //Connect to load and delete bookmarks
+=======
+    connect(customTabWidget->getActiveTab()->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
+    connect(customTabWidget->getActiveTab()->getWebView(), SIGNAL(titleChanged(QString)),this,SLOT(changeTittle(QString)));
+
+    //Connect to load bm from button
+>>>>>>> 03e0413529ac8a5fb0955e4feddc46ceed3a92c8
     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
     connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
 }
@@ -69,18 +74,18 @@ void MainWindow::showParamDialog()
 // ##################### Slot to interact on web view #####################
 void MainWindow::goURL()
 {
-    webView->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
+    customTabWidget->getActiveTab()->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
 }
 
 void MainWindow::changeURL()
 {
-    navBar->getNavController()->getUrlBar()->setText(webView->getWebView()->url().toString());
+    navBar->getNavController()->getUrlBar()->setText(customTabWidget->getActiveTab()->getWebView()->url().toString());
 }
 
 //LUDO
 void MainWindow::loadFav(int idBtn)
 {
-    webView->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
+    customTabWidget->getActiveTab()->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
 }
 void MainWindow::delFav(int idxBtnDel)
 {
@@ -90,20 +95,22 @@ void MainWindow::delFav(int idxBtnDel)
 // ################## Detect survol for show/hide navBar ##################
 void MainWindow::survolNavBar()
 {
-    // Show navController
-    //navBar->getNavController()->setHidden(false);
-    navBar->getNavController()->getUrlBar()->setHidden(false);
-    navBar->getNavController()->getBtnGoUrl()->setHidden(false);
-    navBar->getNavController()->setMaximumHeight(50);
-
+    // Show navController and favRight
+    navBar->getNavController()->setHidden(false);
     navBar->getFavRight()->setHidden(false);
 
+    // Set size
+    navBar->setMinimumHeight(50);
     navBar->setMaximumHeight(50);
 }
 
 void MainWindow::survolWebView()
 {
+    // Hide navController and favRight
+    navBar->getNavController()->setHidden(true);
+    navBar->getFavRight()->setHidden(true);
 
+<<<<<<< HEAD
     // Hide navController
     //navBar->getNavController()->setHidden(true);
     navBar->getNavController()->getUrlBar()->setHidden(true);
@@ -112,6 +119,10 @@ void MainWindow::survolWebView()
 
     navBar->getFavRight()->setHidden(true);
 
+=======
+    // Set size
+    navBar->setMinimumHeight(20);
+>>>>>>> 03e0413529ac8a5fb0955e4feddc46ceed3a92c8
     navBar->setMaximumHeight(20);
 }
 
@@ -119,4 +130,3 @@ void MainWindow::changeTittle(QString url)
 {
     this->setWindowTitle(url);
 }
-

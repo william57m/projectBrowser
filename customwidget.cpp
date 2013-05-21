@@ -11,4 +11,3 @@ void CustomWidget::enterEvent (QEvent *event)
 {
     emit enterEvent();
 }
-

@@ -6,6 +6,7 @@
 #include "../RightClick/rightclickmenu.h"
 #include "webviewmousetracking.h"
 #include <QSettings>
+#include <QUrl>
 
 
 class CustomWebView : public QWidget
@@ -15,6 +16,7 @@ private:
     WebViewMouseTracking *webView;
     RightClickMenu *rcm;
     QWidget *realParent;
+    QUrl *loadedUrl;
 
     //LUDO
     QSettings *settingFavs;
@@ -28,6 +30,7 @@ public:
 
     // Getter
     QWebView* getWebView();
+    QUrl* getLoadedUrl();
 
 signals:
     void survolWebView(); // Signal to real parent

@@ -7,6 +7,7 @@ HEADERS += \
     custompushbutton.h \
     RightClick/camembertbutton.h \
     CustomWebView/webviewmousetracking.h \
+    CustomWebView/customtabwidget.h \
     ParamDialogBox/parametersdialogbox.h \
     NavController/favright.h \
     customboxlayout.h \
@@ -23,6 +24,7 @@ SOURCES += \
     custompushbutton.cpp \
     RightClick/camembertbutton.cpp \
     CustomWebView/webviewmousetracking.cpp \
+    CustomWebView/customtabwidget.cpp \
     ParamDialogBox/parametersdialogbox.cpp \
     NavController/favright.cpp \
     customboxlayout.cpp \

@@ -81,11 +81,6 @@ private:
     //QList<QPushButton>pushBtnInstancied;
 
 signals :
-    //void survolFavIcon();
-    //void clickedAddFav();
-    //void leaveFavRight();
-    //void doubleClicked();
-
 
 public slots :
     QUrl getFavFromBtn(int idxFav);

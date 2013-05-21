@@ -47,16 +47,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
+   // connect(this, SIGNAL(Qt::Key_Enter()), this, SLOT(goURL()));
+
 
     //Replace url
     connect(webView->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
     connect(webView->getWebView(), SIGNAL(titleChanged(QString)),this,SLOT(changeTittle(QString)));
 
-
-    //Connect to load bm from button
+    //Connect to load and delete bookmarks
     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
     connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
-
 }
 
 // ######################## Show parameters dialog #######################
@@ -85,7 +85,6 @@ void MainWindow::loadFav(int idBtn)
 void MainWindow::delFav(int idxBtnDel)
 {
     navBar->getFavRight()->deleteFavFromBtn(idxBtnDel);
-
 }
 
 // ################## Detect survol for show/hide navBar ##################
@@ -111,7 +110,7 @@ void MainWindow::survolWebView()
     navBar->getNavController()->getBtnGoUrl()->setHidden(true);
     navBar->getNavController()->setMaximumHeight(0);
 
-    //navBar->getFavRight()->setHidden(true);
+    navBar->getFavRight()->setHidden(true);
 
     navBar->setMaximumHeight(20);
 }

@@ -3,9 +3,6 @@
 
 FavRight::FavRight(QWidget *parent) : QWidget(parent)
 {
-    /* Open QSetting */
-    //settingFavs = new QSettings("UTBMGL40", "BrowserGL");
-    //std::cout<<"ouverture QSetting"<<std::endl;
 
     etatLayoutFav=false;
     // Init widget
@@ -23,18 +20,17 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
     QString favS;
     favS= QChar(0x05,0x26);
     favIconImg = new QLabel(favIcon);
+    favIconImg->setGeometry(0,10,30,30);
     favIconImg->setText(favS);
     favIconImg->setMouseTracking(true);
     QFont police("calibri");
-    police.setPointSize (18);
+    police.setPointSize (30);
     favIconImg->setFont(police);
     /*-------------*/
 
     // Button
     grpButtonFav = new QButtonGroup(this);
     grpButtonFavDel = new QButtonGroup(this);
-    //   pushBtnInstanciedFavDel = new QButtonGroup(this);
-    //  pushBtnInstanciedFav = new QButtonGroup(this);
 
     // Color
     QPalette p(palette());
@@ -46,10 +42,7 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
     favIcon->setPalette(p);
 
     // Connection
-    //connect(buttonFav,SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
     connect(favWidget, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
-    //connect(favWidget, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
-    //connect(buttonFav,SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
 }
 
 // ############################# Events #############################
@@ -73,7 +66,8 @@ void FavRight::defineFavWiget()
     mappedPoint = mapToGlobal(QPoint(0,0));
     int mx = mappedPoint.x();
     int my = mappedPoint.y();
-    favWidget->setGeometry(mx-275,my+25,300,500);
+    favWidget->setGeometry(mx-275,my+25,300,favsLayout->columnCount()*30);
+
     favWidget->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
     favWidget->show();
 }
@@ -86,31 +80,25 @@ FavRight *FavRight::getWebView(QWebView *qWv)
 
 void FavRight::readFav()
 {
+
     if(etatLayoutFav==true)
     {
-
         favsLayout->removeWidget(favWidget);
         favsLayout->deleteLater();
         std::cout<<"delete "<<std::endl;
         etatLayoutFav=false;
-
         delete favsLayout;
         delete settingFavs;
         delete urlFav;
         delete titleFav;
-
     }
     settingFavs = new QSettings("UTBMGL40", "BrowserGL");
     urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
     titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());
     favsLayout = new QGridLayout();
-    favWidget->setLayout(favsLayout)
-            ;
+    favWidget->setLayout(favsLayout);
     std::cout<<"Dans readFav : "<<urlFav->size()<<std::endl;
-
-
     etatLayoutFav=true;
-
     /* Init fav icon */
     QString favS;
     favS= QChar(0x17,0x27);
@@ -138,6 +126,7 @@ void FavRight::readFav()
         std::cout<<"push ok "<<std::endl;
     }
 }
+
 
 QUrl FavRight::getFavFromBtn(int idxBtn)
 {

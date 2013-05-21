@@ -35,7 +35,7 @@ private:
 
     // Web View
     CustomWebView *webView;
-    
+
 
 signals:
     
@@ -50,11 +50,9 @@ public slots:
 
     void changeTittle(QString urlTitle);
 
-
     //ludo
     void loadFav(int idBtn);
     void delFav(int idxBtnDel);
-
 };
 
 #endif // MAINWINDOW_H

@@ -36,7 +36,7 @@ CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
     webView->setContextMenuPolicy(Qt::CustomContextMenu);
 
     // SIGNAL survol webView to real parent
-    connect(this, SIGNAL(survolWebView()), this->parent()->parent(), SLOT(survolWebView()));
+    connect(this, SIGNAL(survolWebView()), this->realParent, SLOT(survolWebView()));
 
     //LUDO
     settingFavs = new QSettings("UTBMGL40", "BrowserGL");

@@ -48,7 +48,7 @@ void CustomTabWidget::nouvelOnglet()
     }
 
     //CustomWebView creation and tab addition
-    activeCustomWebView = new CustomWebView(this, this);
+    activeCustomWebView = new CustomWebView(this, this->parent());
     QString nomUrl = activeCustomWebView->getLoadedUrl()->toString();
 
 

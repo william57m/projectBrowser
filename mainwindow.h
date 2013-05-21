@@ -36,6 +36,7 @@ private:
     // Web View
     CustomWebView *webView;
     
+
 signals:
     
 public slots:

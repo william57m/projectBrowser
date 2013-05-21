@@ -88,12 +88,6 @@ void FavRight::readFav()
 {
     if(etatLayoutFav==true)
     {
-        /*  for (int i=0; i<urlFav->size();++i)
-        {
-            std::cout<<"add dans grpButton "<<i<<std::endl;
-            grpButtonFav->removeButton(pushBtnInstanciedFav->button(i));
-            grpButtonFavDel->removeButton(pushBtnInstanciedFavDel->button(i));
-        }*/
 
         favsLayout->removeWidget(favWidget);
         favsLayout->deleteLater();
@@ -105,22 +99,13 @@ void FavRight::readFav()
         delete urlFav;
         delete titleFav;
 
-        /* delete pushBtnInstanciedFav;
-        delete pushBtnInstanciedFavDel;
-        pushBtnInstanciedFavDel = new QButtonGroup(this);
-        pushBtnInstanciedFav = new QButtonGroup(this);*/
     }
     settingFavs = new QSettings("UTBMGL40", "BrowserGL");
     urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
     titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());
     favsLayout = new QGridLayout();
-    //Scroll
-    scrollFav = new QScrollArea();
-
-    scrollFav->setLayout(favsLayout);
-
-
-    favWidget->setLayout(favsLayout);
+    favWidget->setLayout(favsLayout)
+            ;
     std::cout<<"Dans readFav : "<<urlFav->size()<<std::endl;
 
 

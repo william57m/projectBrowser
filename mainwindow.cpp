@@ -81,10 +81,11 @@ void MainWindow::changeURL()
 void MainWindow::loadFav(int idBtn)
 {
     webView->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
- }
+}
 void MainWindow::delFav(int idxBtnDel)
 {
     navBar->getFavRight()->deleteFavFromBtn(idxBtnDel);
+
 }
 
 // ################## Detect survol for show/hide navBar ##################

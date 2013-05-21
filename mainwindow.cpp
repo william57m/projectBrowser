@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
-   // connect(this, SIGNAL(Qt::Key_Enter()), this, SLOT(goURL()));
+
 
 
     //Replace url

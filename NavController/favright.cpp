@@ -33,15 +33,6 @@ FavRight::FavRight(QWidget *parent) : QWidget(parent)
     grpButtonFav = new QButtonGroup(this);
     grpButtonFavDel = new QButtonGroup(this);
 
-    // Color
-    QPalette p(palette());
-    p.setColor(QPalette::Background, Qt::yellow);
-    //this->setAutoFillBackground(true);
-    //this->setPalette(p);
-    p.setColor(QPalette::Background, Qt::blue);
-    //favIcon->setAutoFillBackground(true);
-    //favIcon->setPalette(p);
-
     // Connection
     connect(favWidget, SIGNAL(leaveEvent()), this, SLOT(hideFavWidget()));
 }
@@ -86,7 +77,6 @@ void FavRight::readFav()
     {
         favsLayout->removeWidget(favWidget);
         favsLayout->deleteLater();
-        std::cout<<"delete "<<std::endl;
         etatLayoutFav=false;
         delete favsLayout;
         delete settingFavs;
@@ -122,8 +112,6 @@ void FavRight::readFav()
         favsLayout->addWidget(grpButtonFav->buttons().at(i),i,0,1,5);
         favsLayout->addWidget(grpButtonFavDel->buttons().at(i),i,6,1,1);
 
-        /*pushBtnInstanciedFav->addButton(btnAddFav[i],i);
-        pushBtnInstanciedFavDel->addButton(btnDel[i],i);*/
         std::cout<<"push ok "<<std::endl;
     }
 }

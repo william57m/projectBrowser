@@ -34,13 +34,8 @@ private:
     NavBar *navBar;
 
     // Web View
-<<<<<<< HEAD
-    CustomWebView *webView;
-
-=======
     CustomTabWidget *customTabWidget;
     
->>>>>>> 03e0413529ac8a5fb0955e4feddc46ceed3a92c8
 
 signals:
     

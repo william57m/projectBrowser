@@ -36,11 +36,11 @@ MainWindow::MainWindow(QWidget *parent) :
     navBar->setMouseTracking(true);
 
     // Web engine
-    webView = new CustomWebView(this, this);
+    customTabWidget = new CustomTabWidget(this);
 
     // Add items to main layout
     mainLayout->addWidget(navBar);
-    mainLayout->addWidget(webView);
+    mainLayout->addWidget(customTabWidget);
 
     // Set central widget
     this->setCentralWidget(centralWidget);
@@ -49,9 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
 
     //Replace url
-    connect(webView->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
-    connect(webView->getWebView(), SIGNAL(titleChanged(QString)),this,SLOT(changeTittle(QString)));
 
+    connect(customTabWidget->getActiveTab()->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
+    connect(customTabWidget->getActiveTab()->getWebView(), SIGNAL(titleChanged(QString)),this,SLOT(changeTittle(QString)));
 
     //Connect to load bm from button
     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
@@ -69,18 +69,18 @@ void MainWindow::showParamDialog()
 // ##################### Slot to interact on web view #####################
 void MainWindow::goURL()
 {
-    webView->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
+    customTabWidget->getActiveTab()->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
 }
 
 void MainWindow::changeURL()
 {
-    navBar->getNavController()->getUrlBar()->setText(webView->getWebView()->url().toString());
+    navBar->getNavController()->getUrlBar()->setText(customTabWidget->getActiveTab()->getWebView()->url().toString());
 }
 
 //LUDO
 void MainWindow::loadFav(int idBtn)
 {
-    webView->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
+    customTabWidget->getActiveTab()->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
 }
 void MainWindow::delFav(int idxBtnDel)
 {
@@ -115,4 +115,3 @@ void MainWindow::changeTittle(QString url)
 {
     this->setWindowTitle(url);
 }
-

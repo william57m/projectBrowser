@@ -20,7 +20,8 @@ CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
 
     // Init web view
     webView = new WebViewMouseTracking(this);
-    webView->load(QUrl("http://www.google.com/"));
+    loadedUrl = new QUrl("http://www.google.com/");
+    webView->load(*loadedUrl);
     webView->setMinimumSize(500,300);
 
     // Put webView in layout
@@ -35,7 +36,7 @@ CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
     webView->setContextMenuPolicy(Qt::CustomContextMenu);
 
     // SIGNAL survol webView to real parent
-    connect(this, SIGNAL(survolWebView()), this->parent(), SLOT(survolWebView()));
+    connect(this, SIGNAL(survolWebView()), this->parent()->parent(), SLOT(survolWebView()));
 
     //LUDO
     settingFavs = new QSettings("UTBMGL40", "BrowserGL");
@@ -127,4 +128,9 @@ QWebView* CustomWebView::getWebView()
 {
     std::cout<<"dans return getwebview"<<std::endl;
     return webView;
+}
+
+QUrl* CustomWebView::getLoadedUrl()
+{
+    return loadedUrl;
 }

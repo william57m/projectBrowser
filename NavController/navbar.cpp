@@ -8,7 +8,7 @@ NavBar::NavBar(QWidget *parent) :
     favRight = new FavRight(this);
 
     // Main Layout
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    mainLayout = new QHBoxLayout(this);
     this->setLayout(mainLayout);
 
     // Put items into layout
@@ -42,3 +42,4 @@ FavRight* NavBar::getFavRight()
 {
     return favRight;
 }
+

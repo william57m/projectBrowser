@@ -36,18 +36,24 @@ private:
     // Web View
     CustomWebView *webView;
     
+
 signals:
     
 public slots:
     void survolNavBar();
     void survolWebView();
+    void changeURL();
 
     void goURL();
-    //ludo
-    void loadFav(int idBtn);
-
 
     void showParamDialog();
+
+    void changeTittle(QString urlTitle);
+
+
+    //ludo
+    void loadFav(int idBtn);
+    void delFav(int idxBtnDel);
 
 };
 

@@ -108,12 +108,11 @@ void CustomWebView::clickItem(int b)
         break;
     case 225:
         std::cout << "Bottom button" << std::endl;
-        //LUDO
         settingFavs->setValue("Favoris/titre",*titleFav<<getWebView()->title().toStdString().c_str());
         settingFavs->setValue("Favoris/url", *urlFav<<getWebView()->url().toString());
         settingFavs->setValue("Favoris/nbClick", *nbClick<<0);
-        std::cout<<getWebView()->title().toStdString()<<std::endl;
-        std::cout<<getWebView()->url().toString().toStdString()<<std::endl;
+        std::cout<<this->getWebView()->title().toStdString()<<std::endl;
+        std::cout<<this->getWebView()->url().toString().toStdString()<<std::endl;
         break;
     case 315:
         std::cout << "Right button" << std::endl;

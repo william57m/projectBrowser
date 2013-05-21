@@ -48,9 +48,14 @@ MainWindow::MainWindow(QWidget *parent) :
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
 
+    //Replace url
+    connect(webView->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
+    connect(webView->getWebView(), SIGNAL(titleChanged(QString)),this,SLOT(changeTittle(QString)));
+
 
     //Connect to load bm from button
     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
 
 }
 
@@ -67,11 +72,19 @@ void MainWindow::goURL()
     webView->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
 }
 
+void MainWindow::changeURL()
+{
+    navBar->getNavController()->getUrlBar()->setText(webView->getWebView()->url().toString());
+}
+
 //LUDO
 void MainWindow::loadFav(int idBtn)
 {
-    //webView->getWebView()->load(url);
     webView->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
+}
+void MainWindow::delFav(int idxBtnDel)
+{
+    navBar->getFavRight()->deleteFavFromBtn(idxBtnDel);
 
 }
 
@@ -103,4 +116,8 @@ void MainWindow::survolWebView()
     navBar->setMaximumHeight(20);
 }
 
+void MainWindow::changeTittle(QString url)
+{
+    this->setWindowTitle(url);
+}
 

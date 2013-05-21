@@ -13,8 +13,10 @@
 #include<QMutex>
 #include<QSettings>
 #include<QButtonGroup>
+#include<QVector>
 #include "../CustomWebView/customwebview.h"
 #include "customwidget.h"
+#include<QScrollArea>
 
 using namespace std;
 
@@ -26,23 +28,21 @@ public:
     // Constructor
     explicit FavRight(QWidget *parent = 0);
 
-    // Set mutex
-    bool tryLockMutex();
-    void unLockMutex();
-
     // Methods
     void mouseMoveEvent(QMouseEvent *);
-    void defineFavWiget(QPoint p);
+    void defineFavWiget();
     void delButtonFav();
     void readFav();
     bool widgetOut;
     void wichBtn(QString);
-
-    QButtonGroup *getButtonFav();
+    void deleteFavFromBtn(int idxBtn);
 
     // Getters
     FavRight *getWebView(QWebView *qWv);
     QUrl getUrl();
+    QButtonGroup *getButtonFavDel();
+    QButtonGroup *getButtonFav();
+
 
 private:
     // Mutex
@@ -57,10 +57,13 @@ private:
     CustomWidget *favWidget;
     QLabel *favIconImg;
 
+    bool etatLayoutFav;
+
     // Ludo
     QGridLayout *favsLayout;
-    //QPushButton *btnAddFav;
-    //QVector<QPushButton*> **btnAddFav;
+    QScrollArea *scrollFav;
+
+    QRect dimBar;
 
     QWebView *view;
     QSettings *settingFavs;
@@ -69,19 +72,24 @@ private:
     QStringList *titleFav;
     QStringList *nbClick;
 
-    QButtonGroup  *buttonFav;
-    bool isButtonFavCreated;
+    QButtonGroup  *grpButtonFav;
+    QButtonGroup  *grpButtonFavDel;
+
+    QButtonGroup *pushBtnInstanciedFavDel;
+    QButtonGroup *pushBtnInstanciedFav;
+
+    //QList<QPushButton>pushBtnInstancied;
 
 signals :
-    void survolFavIcon();
-    void clickedAddFav();
-    void leaveFavRight();
-
+    //void survolFavIcon();
+    //void clickedAddFav();
+    //void leaveFavRight();
+    //void doubleClicked();
 
 
 public slots :
     QUrl getFavFromBtn(int idxFav);
-    void showFavWidget();
+    //void showFavWidget();
     void hideFavWidget();
 };
 

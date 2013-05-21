@@ -12,6 +12,8 @@ class NavBar : public QWidget
 private:
     NavController *navController;
     FavRight *favRight;
+    QHBoxLayout *mainLayout;
+
 
 public:
     // Constructor
@@ -23,11 +25,15 @@ public:
 
     // Event
     void mouseMoveEvent(QMouseEvent *);
+
+    //ludo
+    void delFavright();
+    void createFavright();
+
     
 signals:
     void survolNavBar();
     
-public slots:
     
 };
 

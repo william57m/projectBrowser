@@ -54,14 +54,15 @@ void FavRight::hideFavWidget()
 // ############################# Others #############################
 void FavRight::defineFavWiget()
 {
+    int largeur=favsLayout->columnCount()*20;
     QPoint mappedPoint;
     mappedPoint = mapToGlobal(QPoint(0,0));
     int mx = mappedPoint.x();
     int my = mappedPoint.y();
-    favWidget->setGeometry(mx-275,my+25,300,favsLayout->columnCount()*30);
-
+    qDebug() << largeur;
+    favWidget->setGeometry(mx-275,my+25,300,largeur);
     favWidget->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
-    favWidget->show();
+    //favWidget->show();
 }
 
 FavRight *FavRight::getWebView(QWebView *qWv)

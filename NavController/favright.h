@@ -17,6 +17,7 @@
 #include "../CustomWebView/customwebview.h"
 #include "customwidget.h"
 #include<QScrollArea>
+#include<QDebug>
 
 using namespace std;
 

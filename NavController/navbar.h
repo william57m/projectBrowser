@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QBoxLayout>
+#include <QToolBar>
 #include "navcontroller.h"
 #include "favright.h"
 
@@ -13,7 +14,6 @@ private:
     NavController *navController;
     FavRight *favRight;
     QHBoxLayout *mainLayout;
-
 
 public:
     // Constructor

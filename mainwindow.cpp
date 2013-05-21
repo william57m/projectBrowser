@@ -91,28 +91,23 @@ void MainWindow::delFav(int idxBtnDel)
 // ################## Detect survol for show/hide navBar ##################
 void MainWindow::survolNavBar()
 {
-    // Show navController
-    //navBar->getNavController()->setHidden(false);
-    navBar->getNavController()->getUrlBar()->setHidden(false);
-    navBar->getNavController()->getBtnGoUrl()->setHidden(false);
-    navBar->getNavController()->setMaximumHeight(50);
-
+    // Show navController and favRight
+    navBar->getNavController()->setHidden(false);
     navBar->getFavRight()->setHidden(false);
 
+    // Set size
+    navBar->setMinimumHeight(50);
     navBar->setMaximumHeight(50);
 }
 
 void MainWindow::survolWebView()
 {
+    // Hide navController and favRight
+    navBar->getNavController()->setHidden(true);
+    navBar->getFavRight()->setHidden(true);
 
-    // Hide navController
-    //navBar->getNavController()->setHidden(true);
-    navBar->getNavController()->getUrlBar()->setHidden(true);
-    navBar->getNavController()->getBtnGoUrl()->setHidden(true);
-    navBar->getNavController()->setMaximumHeight(0);
-
-    //navBar->getFavRight()->setHidden(true);
-
+    // Set size
+    navBar->setMinimumHeight(20);
     navBar->setMaximumHeight(20);
 }
 

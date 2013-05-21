@@ -12,9 +12,12 @@ NavBar::NavBar(QWidget *parent) :
     this->setLayout(mainLayout);
 
     // Put items into layout
+    //this->addWidget(navController);
+    //this->addWidget(favRight);
+    //this->setContentsMargins(0,0,0,0);
     mainLayout->addWidget(navController);
     mainLayout->addWidget(favRight);
-    mainLayout->setContentsMargins(0,0,0,10);
+    mainLayout->setContentsMargins(0,0,0,0);
 
     // Connect
     connect(this, SIGNAL(survolNavBar()), this->parent(), SLOT(survolNavBar()));
@@ -22,8 +25,8 @@ NavBar::NavBar(QWidget *parent) :
     // Color
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::red);
-    this->setAutoFillBackground(true);
-    this->setPalette(p);
+    //this->setAutoFillBackground(true);
+    //this->setPalette(p);
 }
 
 // ############################# Events #############################

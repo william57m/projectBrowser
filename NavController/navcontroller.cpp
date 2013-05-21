@@ -21,8 +21,8 @@ NavController::NavController(QWidget *parent) :
     // Color
     QPalette p(palette());
     p.setColor(QPalette::Background, Qt::gray);
-    this->setAutoFillBackground(true);
-    this->setPalette(p);
+    //this->setAutoFillBackground(true);
+    //this->setPalette(p);
 }
 
 // ############################# Getters #############################

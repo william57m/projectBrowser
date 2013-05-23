@@ -49,11 +49,10 @@ private:
     QLabel *favIconImg;
 
     bool etatLayoutFav;
+    int nbFav;
 
-    // Ludo
     QGridLayout *favsLayout;
 
-    QRect dimBar;
 
     QWebView *view;
     QSettings *settingFavs;
@@ -62,9 +61,9 @@ private:
     QStringList *titleFav;
     QStringList *nbClick;
 
+    //buttons
     QButtonGroup  *grpButtonFav;
     QButtonGroup  *grpButtonFavDel;
-
     QButtonGroup *pushBtnInstanciedFavDel;
     QButtonGroup *pushBtnInstanciedFav;
 

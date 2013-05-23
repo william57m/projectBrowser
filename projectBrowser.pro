@@ -10,7 +10,6 @@ HEADERS += \
     CustomWebView/customtabwidget.h \
     ParamDialogBox/parametersdialogbox.h \
     NavController/favright.h \
-    customboxlayout.h \
     customwidget.h \
     NavController/navbar.h
 
@@ -27,7 +26,6 @@ SOURCES += \
     CustomWebView/customtabwidget.cpp \
     ParamDialogBox/parametersdialogbox.cpp \
     NavController/favright.cpp \
-    customboxlayout.cpp \
     customwidget.cpp \
     NavController/navbar.cpp
 

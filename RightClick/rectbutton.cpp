@@ -1,7 +1,5 @@
 #include "rectbutton.h"
-#include <QPainter>
-#include <iostream>
-#include <QLabel>
+
 
 RectButton::RectButton(int w, int h, int x, int y, QWidget *parent) :
     QWidget(parent)

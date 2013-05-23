@@ -1,9 +1,5 @@
 #include "mainwindow.h"
-#include <QBoxLayout>
-#include <iostream>
-#include <QMessageBox>
-#include <QGridLayout>
-#include "NavController/navbar.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)

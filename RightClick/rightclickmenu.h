@@ -2,6 +2,11 @@
 #define RIGHTCLICKMENU_H
 
 #include <QWidget>
+#include <QPainter>
+#include <QGridLayout>
+#include <iostream>
+#include "camembertbutton.h"
+#include "rectbutton.h"
 
 class RightClickMenu : public QWidget
 {

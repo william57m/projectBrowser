@@ -5,6 +5,7 @@
 #include <QTabWidget>
 #include <QPushButton>
 #include <QWidget>
+#include <QBoxLayout>
 
 class ParametersDialogBox : public QDialog
 {

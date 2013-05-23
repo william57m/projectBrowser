@@ -2,6 +2,9 @@
 #define RECTBUTTON_H
 
 #include <QWidget>
+#include <QPainter>
+#include <iostream>
+#include <QLabel>
 
 class RectButton : public QWidget
 {

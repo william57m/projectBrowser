@@ -11,7 +11,10 @@
 #include "RightClick/rightclickmenu.h"
 #include "ParamDialogBox/parametersdialogbox.h"
 #include "NavController/navbar.h"
-
+#include <QBoxLayout>
+#include <iostream>
+#include <QMessageBox>
+#include <QGridLayout>
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -50,11 +53,9 @@ public slots:
 
     void changeTittle(QString urlTitle);
 
-
     //ludo
     void loadFav(int idBtn);
     void delFav(int idxBtnDel);
-
 };
 
 #endif // MAINWINDOW_H

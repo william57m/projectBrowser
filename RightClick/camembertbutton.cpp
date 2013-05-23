@@ -1,7 +1,5 @@
 #include "camembertbutton.h"
-#include <QPainter>
-#include <iostream>
-#include <QLabel>
+
 
 CamembertButton::CamembertButton(int w, int h, int x, int y, int base, int orientation, QWidget *parent) :
     QWidget(parent), x(x), y(y), base(base), orientation(orientation), i(0)

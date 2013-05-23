@@ -1,9 +1,5 @@
 #include "customwebview.h"
-#include <iostream>
-#include <QBoxLayout>
-#include <string>
 
-using namespace std;
 
 CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
     QWidget(parent)
@@ -43,7 +39,7 @@ CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
     //Load Fav from QSetting
     urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
     titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());
-    nbClick =  new QStringList(settingFavs->value("Favoris/nbClick").value<QStringList>());
+    //nbClick =  new QStringList(settingFavs->value("Favoris/nbClick").value<QStringList>());
 
 }
 
@@ -111,7 +107,7 @@ void CustomWebView::clickItem(int b)
         std::cout << "Bottom button" << std::endl;
         settingFavs->setValue("Favoris/titre",*titleFav<<getWebView()->title().toStdString().c_str());
         settingFavs->setValue("Favoris/url", *urlFav<<getWebView()->url().toString());
-        settingFavs->setValue("Favoris/nbClick", *nbClick<<0);
+        //settingFavs->setValue("Favoris/nbClick", *nbClick<<0);
         std::cout<<this->getWebView()->title().toStdString()<<std::endl;
         std::cout<<this->getWebView()->url().toString().toStdString()<<std::endl;
         break;

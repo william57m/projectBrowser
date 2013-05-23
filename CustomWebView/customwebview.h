@@ -7,7 +7,11 @@
 #include "webviewmousetracking.h"
 #include <QSettings>
 #include <QUrl>
+#include <iostream>
+#include <QBoxLayout>
+#include <string>
 
+using namespace std;
 
 class CustomWebView : public QWidget
 {
@@ -22,7 +26,7 @@ private:
     QSettings *settingFavs;
     QStringList *urlFav;
     QStringList *titleFav;
-    QStringList *nbClick;
+    //QStringList *nbClick;
 
 public:
     // Constructor

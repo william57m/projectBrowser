@@ -1,5 +1,4 @@
 #include "parametersdialogbox.h"
-#include <QBoxLayout>
 
 ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
     QDialog(parent)

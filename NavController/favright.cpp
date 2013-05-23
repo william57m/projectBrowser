@@ -1,16 +1,17 @@
 #include "favright.h"
-#include <iostream>
+
 
 FavRight::FavRight(QWidget *parent) : QWidget(parent)
 {
 
-    etatLayoutFav=false;
     // Init widget
     favIcon = new CustomWidget(this);
     favIcon->setFixedSize(50,50);
-
     favWidget = new CustomWidget(this);
     favIcon->setMouseTracking(true);
+
+    //to check layout stat
+    etatLayoutFav=false;
 
     // Init this
     this->setMouseTracking(true);
@@ -47,22 +48,24 @@ void FavRight::mouseMoveEvent(QMouseEvent *)
 void FavRight::hideFavWidget()
 {
     this->readFav();
-    // Hide favWidget
     this->favWidget->setHidden(true);
 }
 
 // ############################# Others #############################
 void FavRight::defineFavWiget()
 {
-    int largeur=favsLayout->columnCount()*20;
+    int length;
+    if(favsLayout->columnCount()!=0)
+        length=favsLayout->columnCount()*20;
+    else
+        length = 10;
     QPoint mappedPoint;
     mappedPoint = mapToGlobal(QPoint(0,0));
     int mx = mappedPoint.x();
     int my = mappedPoint.y();
-    qDebug() << largeur;
-    favWidget->setGeometry(mx-275,my+25,300,largeur);
+    qDebug() << length;
+    favWidget->setGeometry(mx-275,my+25,300,length);
     favWidget->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
-    //favWidget->show();
 }
 
 FavRight *FavRight::getWebView(QWebView *qWv)
@@ -120,20 +123,12 @@ void FavRight::readFav()
 
 QUrl FavRight::getFavFromBtn(int idxBtn)
 {
-    QStringList *nbC =  new QStringList(settingFavs->value("Favoris/nbClick").value<QStringList>());
-    QString iNbC=nbC->at(idxBtn);
-    int cTmp = iNbC.toInt();
-    cTmp++;
-    nbC->replace(idxBtn,QString::number(cTmp));
-    settingFavs->setValue("Favoris/nbClick", *nbC);
-    std::cout<<"nb clique : "<<cTmp<<std::endl;
     return urlFav->at(idxBtn);
 }
 
 void FavRight::deleteFavFromBtn(int idxBtn)
 {
-
-    std::cout<<"CLICK ON : "<<idxBtn<<std::endl;
+    //Open QSettings
     settingFavs = new QSettings("UTBMGL40", "BrowserGL");
     urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
     titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());

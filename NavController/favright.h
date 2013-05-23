@@ -1,25 +1,17 @@
 #ifndef FAVRIGHT_H
 #define FAVRIGHT_H
 #include<QWidget>
-#include<QLabel>
 #include<QLayout>
 #include<QBoxLayout>
-#include<iostream>
-#include<QPainter>
 #include<stdio.h>
 #include<QPushButton>
-#include<QWebView>
 #include<QStringList>
-#include<QMutex>
 #include<QSettings>
 #include<QButtonGroup>
-#include<QVector>
 #include "../CustomWebView/customwebview.h"
 #include "customwidget.h"
-#include<QScrollArea>
 #include<QDebug>
-
-using namespace std;
+#include <iostream>
 
 class FavRight : public QWidget
 {
@@ -46,8 +38,6 @@ public:
 
 
 private:
-    // Mutex
-    QMutex *mutex;
 
     CustomWebView *webView;
 
@@ -62,7 +52,6 @@ private:
 
     // Ludo
     QGridLayout *favsLayout;
-    QScrollArea *scrollFav;
 
     QRect dimBar;
 

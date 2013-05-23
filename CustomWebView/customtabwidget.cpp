@@ -1,6 +1,5 @@
 #include "customtabwidget.h"
-#include <iostream>
-using namespace std;
+
 
 CustomTabWidget::CustomTabWidget(QWidget *parent) :
     QWidget(parent)

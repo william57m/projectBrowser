@@ -2,6 +2,9 @@
 #define CAMEMBERTBUTTON_H
 
 #include <QWidget>
+#include <QPainter>
+#include <iostream>
+#include <QLabel>
 
 class CamembertButton : public QWidget
 {

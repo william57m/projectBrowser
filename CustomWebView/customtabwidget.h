@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QTabBar>
 #include <QTabWidget>
+#include <iostream>
+using namespace std;
 
 class CustomTabWidget : public QWidget
 {

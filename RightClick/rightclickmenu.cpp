@@ -1,9 +1,4 @@
 #include "rightclickmenu.h"
-#include <QPainter>
-#include <QGridLayout>
-#include <iostream>
-#include "camembertbutton.h"
-#include "rectbutton.h"
 
 /* ##### Documentation right click #####
  *

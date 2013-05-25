@@ -55,8 +55,8 @@ void FavRight::hideFavWidget()
 void FavRight::defineFavWiget()
 {
     int length;
-    if(favsLayout->columnCount()!=0)
-        length=favsLayout->columnCount()*20;
+    if(nbFav!=0)
+        length=nbFav*20;
     else
         length = 10;
     QPoint mappedPoint;
@@ -91,6 +91,7 @@ void FavRight::readFav()
     urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
     titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());
     favsLayout = new QGridLayout();
+    nbFav = favsLayout->columnCount();
     favWidget->setLayout(favsLayout);
     std::cout<<"Dans readFav : "<<urlFav->size()<<std::endl;
     etatLayoutFav=true;

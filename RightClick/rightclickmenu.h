@@ -18,7 +18,15 @@ public:
     // Event
     void leaveEvent(QEvent * event);
 
+    // Getters
+    CamembertButton* getBtn(int b);
+
 private:
+    // Camembert buttons
+    CamembertButton *btn1;
+    CamembertButton *btn2;
+    CamembertButton *btn3;
+    CamembertButton *btn4;
 
 signals:
     void closeRightClick();

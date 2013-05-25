@@ -36,10 +36,10 @@ RightClickMenu::RightClickMenu(QWidget *parent) :
     */
 
     RectButton *btnCentral = new RectButton(80, 80, 20, 20, this);
-    CamembertButton *btn1 = new CamembertButton(80,40, -10, 10, 45,90, this); // Haut
-    CamembertButton *btn3 = new CamembertButton(80,40, -10,-70, 225,90, this); // Bas
-    CamembertButton *btn4 = new CamembertButton(40,80, -70,-10, 315,90, this); // Droite
-    CamembertButton *btn2 = new CamembertButton(40,80, 10, -10, 135,90, this); // Gauche
+    btn1 = new CamembertButton(80,40, -10, 10, 45,90, this); // Haut
+    btn3 = new CamembertButton(80,40, -10,-70, 225,90, this); // Bas
+    btn4 = new CamembertButton(40,80, -70,-10, 315,90, this); // Droite
+    btn2 = new CamembertButton(40,80, 10, -10, 135,90, this); // Gauche
 
     // Put buttons in main layout
     mainL->addWidget(btn1, 0, 1);
@@ -62,4 +62,15 @@ void RightClickMenu::leaveEvent(QEvent * event)
 {
     // Emit to user class
     emit closeRightClick();
+}
+
+CamembertButton* RightClickMenu::getBtn(int b)
+{
+    switch(b)
+    {
+        case 1: return btn1;
+        case 2: return btn2;
+        case 3: return btn3;
+        default: return btn4;
+    }
 }

@@ -21,6 +21,7 @@ private:
     RightClickMenu *rcm;
     QWidget *realParent;
     QUrl *loadedUrl;
+    int itemClick;
 
     //LUDO
     QSettings *settingFavs;
@@ -38,10 +39,11 @@ public:
 
 signals:
     void survolWebView(); // Signal to real parent
+    void clickNewTab(); // Signal to send to customTabWidget
 
 public slots:
     // Open right click
-    void openRCM(QPoint p);
+    void openRCM(QContextMenuEvent *event);
 
     // Slot for mouse move WebView
     void mouseMoveWebView();

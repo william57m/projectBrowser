@@ -5,5 +5,6 @@
         <file>ressources/icon/next.png</file>
         <file>ressources/icon/save.png</file>
         <file>ressources/icon/plus.png</file>
+        <file>ressources/icon/cut.png</file>
     </qresource>
 </RCC>

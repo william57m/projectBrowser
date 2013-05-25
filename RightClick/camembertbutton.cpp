@@ -20,9 +20,11 @@ CamembertButton::CamembertButton(int w, int h, int x, int y, int base, int orien
     //this->setAutoFillBackground(true);
     //this->setPalette(p);
 
+    // Init boolean enabled
+    enabled = true;
 
     // Put icon
-    QLabel  *label_img  = new QLabel(this);
+    label_img  = new QLabel(this);
     QPixmap *pixmap_img;
 
     switch(base)
@@ -48,8 +50,29 @@ CamembertButton::CamembertButton(int w, int h, int x, int y, int base, int orien
     label_img->setPixmap(*pixmap_img);
 }
 
+void CamembertButton::changeImgCam45(int i)
+{
+    // Attributs
+    QPixmap *pixmap_img;
+    //this->setEnabled(true);
+
+    // Check target
+    if(i==1) // On selected text
+        pixmap_img = new QPixmap(":/ressources/icon/save.png");
+    else if(i==2) // On image
+        pixmap_img = new QPixmap(":/ressources/icon/cut.png");
+    //else // Others
+        //this->setEnabled(false);
+
+    // Change image top button
+    label_img->setPixmap(*pixmap_img);
+    this->repaint();
+}
+
 void CamembertButton::paintEvent(QPaintEvent *)
 {
+    if(enabled)
+    {
     if(i==0)
     {
         QPainter painter(this);
@@ -58,7 +81,7 @@ void CamembertButton::paintEvent(QPaintEvent *)
         painter.setBrush(Qt::black);
         painter.drawPie(x,y,100,100,base*16,orientation*16);
     }
-    else
+    else // Agrandis
     {
         QPainter painter(this);
         painter.setRenderHint(QPainter::Antialiasing, true);
@@ -66,18 +89,40 @@ void CamembertButton::paintEvent(QPaintEvent *)
         painter.setBrush(Qt::black);
         painter.drawPie(x-5,y-5,110,110,base*16,orientation*16);
     }
+    }
+    else
+    {
+        if(i==0)
+        {
+            QPainter painter(this);
+            painter.setRenderHint(QPainter::Antialiasing, true);
+            painter.setOpacity(0.2);
+            painter.setBrush(Qt::black);
+            painter.drawPie(x,y,100,100,base*16,orientation*16);
+        }
+        else // Agrandis
+        {
+            QPainter painter(this);
+            painter.setRenderHint(QPainter::Antialiasing, true);
+            painter.setOpacity(0.7);
+            painter.setBrush(Qt::black);
+            painter.drawPie(x-5,y-5,110,110,base*16,orientation*16);
+        }
+    }
+
 }
 
 void CamembertButton::mouseMoveEvent(QMouseEvent *)
 {
-    if(this->underMouse())
-    {
-        // Increment i
-        i++;
+    if(enabled)
+        if(this->underMouse())
+        {
+            // Increment i
+            i++;
 
-        // Emit to this
-        emit mouseMove();
-    }
+            // Emit to this
+            emit mouseMove();
+        }
 }
 
 void CamembertButton::leaveEvent(QEvent * event)
@@ -92,5 +137,11 @@ void CamembertButton::leaveEvent(QEvent * event)
 void CamembertButton::mousePressEvent(QMouseEvent *)
 {
     // Emit to user class
-    emit click(base);
+    if(enabled)
+        emit click(base);
+}
+
+void CamembertButton::enable(bool e)
+{
+    enabled = e;
 }

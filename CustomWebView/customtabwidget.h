@@ -30,6 +30,7 @@ private:
 signals:
 
 private slots:
+
     //Create new tab
     void nouvelOnglet();
 

@@ -12,8 +12,10 @@ public:
     
 signals:
     void mouseMoveWebView();
+    void rightClick(QContextMenuEvent *event);
     
-public slots:
+private slots:
+    void contextMenuEvent(QContextMenuEvent * event);
     
 };
 

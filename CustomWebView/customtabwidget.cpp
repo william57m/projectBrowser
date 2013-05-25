@@ -34,6 +34,10 @@ CustomTabWidget::CustomTabWidget(QWidget *parent) :
     connect(actionNouvelOnglet, SIGNAL(triggered()), this, SLOT(nouvelOnglet()));
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(fermerOnglet()));
 
+    // To modify (Work just for the first tab)
+    connect(activeCustomWebView, SIGNAL(clickNewTab()), this, SLOT(nouvelOnglet()));
+
+
 }
 
 // ############################# Nouvel Onglet #############################

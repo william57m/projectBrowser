@@ -1,6 +1,5 @@
 #include "customwebview.h"
 
-
 #include <QFile>
 #include <QFileDialog>
 #include <QTextStream>
@@ -9,6 +8,9 @@
 #include <QWebHitTestResult>
 #include <QWebHistory>
 
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
     QWidget(parent)
 {
@@ -203,8 +205,9 @@ void CustomWebView::clickItem(int b)
     }
 }
 
-// ################################# Getters ################################
-
+// ###################################################################
+// GETTERS
+// ###################################################################
 QWebView* CustomWebView::getWebView()
 {
     std::cout<<"dans return getwebview"<<std::endl;

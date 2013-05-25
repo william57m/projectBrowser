@@ -1,6 +1,8 @@
 #include "rectbutton.h"
 
-
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 RectButton::RectButton(int w, int h, int x, int y, QWidget *parent) :
     QWidget(parent)
 {
@@ -32,6 +34,9 @@ RectButton::RectButton(int w, int h, int x, int y, QWidget *parent) :
     //this->setPalette(p);
 }
 
+// ###################################################################
+// EVENTS
+// ###################################################################
 void RectButton::paintEvent(QPaintEvent *)
 {
     if(i==0)

@@ -1,5 +1,8 @@
 #include "parametersdialogbox.h"
 
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
     QDialog(parent)
 {
@@ -39,6 +42,4 @@ ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
     // Add widget to tabWidget
     tabWidget->addTab(generalWidget, "General");
     tabWidget->addTab(persoWidget, "Personnalisation");
-
-
 }

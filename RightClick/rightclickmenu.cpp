@@ -15,6 +15,9 @@
  *
  */
 
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 RightClickMenu::RightClickMenu(QWidget *parent) :
     QWidget(parent)
 {
@@ -58,12 +61,18 @@ RightClickMenu::RightClickMenu(QWidget *parent) :
     //this->setPalette(p);
 }
 
+// ###################################################################
+// EVENT
+// ###################################################################
 void RightClickMenu::leaveEvent(QEvent * event)
 {
     // Emit to user class
     emit closeRightClick();
 }
 
+// ###################################################################
+// GETTER
+// ###################################################################
 CamembertButton* RightClickMenu::getBtn(int b)
 {
     switch(b)

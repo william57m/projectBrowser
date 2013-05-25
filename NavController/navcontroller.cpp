@@ -1,5 +1,8 @@
 #include "navcontroller.h"
 
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 NavController::NavController(QWidget *parent) :
     QWidget(parent)
 {
@@ -25,7 +28,9 @@ NavController::NavController(QWidget *parent) :
     //this->setPalette(p);
 }
 
-// ############################# Getters #############################
+// ###################################################################
+// GETTERS
+// ###################################################################
 QPushButton* NavController::getBtnGoUrl()
 {
     return goUrl;

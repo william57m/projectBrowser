@@ -1,6 +1,8 @@
 #include "customtabwidget.h"
 
-
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 CustomTabWidget::CustomTabWidget(QWidget *parent) :
     QWidget(parent)
 {

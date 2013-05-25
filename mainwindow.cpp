@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -44,7 +47,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
 
     //Replace url
-
     connect(customTabWidget->getActiveTab()->getWebView(), SIGNAL(urlChanged(QUrl)),this,SLOT(changeURL()));
     connect(customTabWidget->getActiveTab()->getWebView(), SIGNAL(titleChanged(QString)),this,SLOT(changeTittle(QString)));
 
@@ -54,14 +56,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-// ######################## Show parameters dialog #######################
+// ###################################################################
+// METHODS
+// ###################################################################
+
+// ###################### Show parameters dialog #####################
 void MainWindow::showParamDialog()
 {
     std::cout << "Show param dialog" << std::endl;
     paramDialog->exec();
 }
 
-// ##################### Slot to interact on web view #####################
+// ################## Slot to interact on web view ###################
 void MainWindow::goURL()
 {
     customTabWidget->getActiveTab()->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
@@ -72,7 +78,7 @@ void MainWindow::changeURL()
     navBar->getNavController()->getUrlBar()->setText(customTabWidget->getActiveTab()->getWebView()->url().toString());
 }
 
-//LUDO
+// ######################## Manage Favorites #########################
 void MainWindow::loadFav(int idBtn)
 {
     customTabWidget->getActiveTab()->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
@@ -83,7 +89,7 @@ void MainWindow::delFav(int idxBtnDel)
 
 }
 
-// ################## Detect survol for show/hide navBar ##################
+// ################ Detect survol for show/hide navBar ###############
 void MainWindow::survolNavBar()
 {
     // Show navController and favRight

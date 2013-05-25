@@ -1,6 +1,9 @@
 #include "webviewmousetracking.h"
 #include <iostream>
 
+// ###################################################################
+// CONSTRUCTOR
+// ###################################################################
 WebViewMouseTracking::WebViewMouseTracking(QWidget *parent) :
     QWebView(parent)
 {
@@ -19,6 +22,9 @@ WebViewMouseTracking::WebViewMouseTracking(QWidget *parent) :
     QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessFileUrls, true);
 }
 
+// ###################################################################
+// EVENTS
+// ###################################################################
 void WebViewMouseTracking::mouseMoveEvent(QMouseEvent *)
 {
     emit mouseMoveWebView();

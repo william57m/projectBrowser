@@ -3,27 +3,37 @@
 
 #include <QWidget>
 #include <QWebView>
-#include "../RightClick/rightclickmenu.h"
-#include "webviewmousetracking.h"
+#include <QBoxLayout>
 #include <QSettings>
 #include <QUrl>
-#include <iostream>
-#include <QBoxLayout>
+#include <QFile>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QWebView>
+#include <QContextMenuEvent>
+#include <QWebHitTestResult>
+#include <QWebHistory>
+
+#include "webviewmousetracking.h"
+#include "../RightClick/rightclickmenu.h"
+
 #include <string>
 
+#include <iostream>
 using namespace std;
 
 class CustomWebView : public QWidget
 {
     Q_OBJECT
 private:
+    // Attributes
     WebViewMouseTracking *webView;
     RightClickMenu *rcm;
     QWidget *realParent;
     QUrl *loadedUrl;
     int itemClick;
 
-    //LUDO
+    // Favorites manage
     QSettings *settingFavs;
     QStringList *urlFav;
     QStringList *titleFav;

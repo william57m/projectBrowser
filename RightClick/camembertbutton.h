@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QPainter>
-#include <iostream>
 #include <QLabel>
 
 class CamembertButton : public QWidget
@@ -22,8 +21,6 @@ public:
     void mouseMoveEvent(QMouseEvent *);
     void mousePressEvent(QMouseEvent *);
     void leaveEvent(QEvent * event);
-
-
 
 private:
     // Property

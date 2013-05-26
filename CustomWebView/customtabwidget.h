@@ -1,5 +1,6 @@
 #ifndef CUSTOMTABWIDGET_H
 #define CUSTOMTABWIDGET_H
+
 #include "CustomWebView/customwebview.h"
 #include <QBoxLayout>
 #include <QWidget>
@@ -9,6 +10,7 @@
 #include <QTabBar>
 #include <QTabWidget>
 #include <iostream>
+
 using namespace std;
 
 class CustomTabWidget : public QWidget

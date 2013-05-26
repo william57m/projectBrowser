@@ -1,13 +1,5 @@
 #include "customwebview.h"
 
-#include <QFile>
-#include <QFileDialog>
-#include <QTextStream>
-#include <QWebView>
-#include <QContextMenuEvent>
-#include <QWebHitTestResult>
-#include <QWebHistory>
-
 // ###################################################################
 // CONSTRUCTOR
 // ###################################################################
@@ -37,12 +29,11 @@ CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
     rcm = new RightClickMenu(this);
     rcm->setHidden(true);
 
-    // SIGNAL righClick on webView
-    //connect(webView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(openRCM(QPoint)));
-    //webView->setContextMenuPolicy(Qt::CustomContextMenu);
+    // # Connect ###############################
+    // Right click
     connect(webView,SIGNAL(rightClick(QContextMenuEvent*)), this, SLOT(openRCM(QContextMenuEvent*)));
 
-    // SIGNAL survol webView to real parent
+    // Signal survol webView to real parent
     connect(this, SIGNAL(survolWebView()), this->realParent, SLOT(survolWebView()));
 
     //LUDO
@@ -65,13 +56,17 @@ void CustomWebView::mouseMoveWebView()
 
 void CustomWebView::openRCM(QContextMenuEvent *event)
 {
-    QWebHitTestResult test = webView->page()->mainFrame()->hitTestContent(event->pos());
+    // ################# Get data on target clicked ################
 
+    QWebHitTestResult test = webView->page()->mainFrame()->hitTestContent(event->pos());
     QUrl url = test.linkUrl();
+
+    // ############### Set camembert button / Target ###############
 
     itemClick = -1;
     rcm->getBtn(1)->enable(false);
-    if(!url.isEmpty()) // Click
+
+    if(!url.isEmpty()) // Click on anything
     {
         itemClick = 0;
     }
@@ -88,40 +83,25 @@ void CustomWebView::openRCM(QContextMenuEvent *event)
         rcm->getBtn(1)->enable(true);
     }
 
-    cout << "itemClick: " << itemClick << endl;
+    // DEBUG
+    cout << "// DEBUG TOP BUTTON\nitemClick: " << itemClick << endl;
 
+    // ############## Enable/Disable back/next buttons #############
 
-    // Enable/Disable back/next buttons
-    if(webView->page()->history()->backItems(10).length() > 0)
-    {
-        cout << "Back possible " << endl;
+    if(webView->page()->history()->backItems(10).length() > 0) // Back possible
         rcm->getBtn(2)->enable(true);
-    }
-    else
-    {
-        cout << "Back impossible " << endl;
+    else // Back impossible
         rcm->getBtn(2)->enable(false);
-    }
 
-    if(webView->page()->history()->forwardItems(10).length() > 0)
-    {
-        cout << "Next possible " << endl;
+    if(webView->page()->history()->forwardItems(10).length() > 0) // Next possible
         rcm->getBtn(4)->enable(true);
-    }
-    else
-    {
-        cout << "next impossible " << endl;
+    else // Next impossible
         rcm->getBtn(4)->enable(false);
-    }
 
-
+    // ################ Put right click under mouse ################
 
     // Get cursor position from event right click
     QPoint pp = event->pos();
-
-    // Get cursor position from mainWindow
-    //QPoint pp = this->mapFromGlobal(QCursor::pos());
-    //std::cout << "Right Click : " << pp.x() << " - " << pp.y() << std::endl;
 
     // Calculate position for widget
     int x = pp.x();// - this->pos().x();
@@ -145,7 +125,6 @@ void CustomWebView::closeRightClick()
 {
     // Close right click
     rcm->setHidden(true);
-    std::cout << "Passage fermeture" << std::endl;
 }
 
 void CustomWebView::clickItem(int b)
@@ -157,11 +136,11 @@ void CustomWebView::clickItem(int b)
     switch(b)
     {
     case 0:
-        std::cout << "Center button" << std::endl;
+
         emit clickNewTab();
         break;
+
     case 45:
-        std::cout << "Top button" << std::endl;
 
         if(itemClick == 1) // Save image
         {
@@ -186,22 +165,26 @@ void CustomWebView::clickItem(int b)
         }
 
         break;
+
     case 135:
-        std::cout << "Left button" << std::endl;
+
         webView->back();
         break;
+
     case 225:
-        std::cout << "Bottom button" << std::endl;
+
         settingFavs->setValue("Favoris/titre",*titleFav<<getWebView()->title().toStdString().c_str());
         settingFavs->setValue("Favoris/url", *urlFav<<getWebView()->url().toString());
         //settingFavs->setValue("Favoris/nbClick", *nbClick<<0);
         std::cout<<this->getWebView()->title().toStdString()<<std::endl;
         std::cout<<this->getWebView()->url().toString().toStdString()<<std::endl;
         break;
+
     case 315:
-        std::cout << "Right button" << std::endl;
+
         webView->forward();
         break;
+
     }
 }
 
@@ -210,7 +193,6 @@ void CustomWebView::clickItem(int b)
 // ###################################################################
 QWebView* CustomWebView::getWebView()
 {
-    std::cout<<"dans return getwebview"<<std::endl;
     return webView;
 }
 

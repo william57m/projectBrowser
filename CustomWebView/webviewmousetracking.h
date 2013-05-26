@@ -7,8 +7,11 @@ class WebViewMouseTracking : public QWebView
 {
     Q_OBJECT
 public:
+    // Constructor
     explicit WebViewMouseTracking(QWidget *parent = 0);
-    void mouseMoveEvent(QMouseEvent *);
+
+    // Event
+    void enterEvent (QEvent *event);
     
 signals:
     void mouseMoveWebView();

@@ -10,10 +10,16 @@ CustomWidget::CustomWidget(QWidget *parent) : QWidget(parent) { }
 // ###################################################################
 void CustomWidget::leaveEvent (QEvent *event)
 {
+    // Unused
+    Q_UNUSED(event);
+
     emit leaveEvent();
 }
 
 void CustomWidget::enterEvent (QEvent *event)
 {
+    // Unused
+    Q_UNUSED(event);
+
     emit enterEvent();
 }

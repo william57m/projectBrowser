@@ -23,8 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
     menuBar->addMenu(menuFile);
     menuFile->addAction(menuParam);
 
-    connect(menuParam, SIGNAL(triggered()), this, SLOT(showParamDialog()));
-
     // Init parameters dialog box
     paramDialog = new ParametersDialogBox(this);
 
@@ -42,6 +40,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Set central widget
     this->setCentralWidget(centralWidget);
+
+    // Connect button to show paramDialog
+    connect(menuParam, SIGNAL(triggered()), this, SLOT(showParamDialog()));
 
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
@@ -63,7 +64,6 @@ MainWindow::MainWindow(QWidget *parent) :
 // ###################### Show parameters dialog #####################
 void MainWindow::showParamDialog()
 {
-    std::cout << "Show param dialog" << std::endl;
     paramDialog->exec();
 }
 
@@ -86,7 +86,6 @@ void MainWindow::loadFav(int idBtn)
 void MainWindow::delFav(int idxBtnDel)
 {
     navBar->getFavRight()->deleteFavFromBtn(idxBtnDel);
-
 }
 
 // ################ Detect survol for show/hide navBar ###############

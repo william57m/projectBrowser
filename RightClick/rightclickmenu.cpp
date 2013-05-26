@@ -24,20 +24,10 @@ RightClickMenu::RightClickMenu(QWidget *parent) :
     // Set size
     this->setFixedSize(200,200);
 
-    //QLayout *lay = new QLayout(this);
-    // Main Layout - Grid
+    // Main Layout
     QGridLayout *mainL = new QGridLayout(this);
 
     // Init Buttons
-
-    /* Old disposition
-    RectButton *btnCentral = new RectButton(30, 30, this);
-    CamembertButton *btn1 = new CamembertButton(100,100, 0, 70, 45,90, this); // Haut
-    CamembertButton *btn3 = new CamembertButton(100,100, 0,-70, 225,90, this); // Bas
-    CamembertButton *btn4 = new CamembertButton(100,100, -70,0, 315,90, this); // Droite
-    CamembertButton *btn2 = new CamembertButton(100,100, 70, 0, 135,90, this); // Gauche
-    */
-
     RectButton *btnCentral = new RectButton(80, 80, 20, 20, this);
     btn1 = new CamembertButton(80,40, -10, 10, 45,90, this); // Haut
     btn3 = new CamembertButton(80,40, -10,-70, 225,90, this); // Bas
@@ -53,12 +43,6 @@ RightClickMenu::RightClickMenu(QWidget *parent) :
 
     // Connection
     connect(this, SIGNAL(closeRightClick()), this->parent(), SLOT(closeRightClick()));
-
-    // Color
-    QPalette p(palette());
-    p.setColor(QPalette::Background, Qt::yellow);
-    //this->setAutoFillBackground(true);
-    //this->setPalette(p);
 }
 
 // ###################################################################
@@ -66,6 +50,9 @@ RightClickMenu::RightClickMenu(QWidget *parent) :
 // ###################################################################
 void RightClickMenu::leaveEvent(QEvent * event)
 {
+    // Unused
+    Q_UNUSED(event);
+
     // Emit to user class
     emit closeRightClick();
 }

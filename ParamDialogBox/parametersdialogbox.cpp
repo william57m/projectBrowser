@@ -42,4 +42,18 @@ ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
     // Add widget to tabWidget
     tabWidget->addTab(generalWidget, "General");
     tabWidget->addTab(persoWidget, "Personnalisation");
+
+    //Label et champ choix page d'accueil
+    QLabel *labelPageAccueil = new QLabel("Page d'accueil : ",generalWidget);
+    labelPageAccueil->setGeometry(20,20,460,20);
+
+    zoneTextePageAccueil = new QTextEdit("http://www.",generalWidget);
+    zoneTextePageAccueil->setGeometry(20,50,430,23);
+}
+
+
+//Getter page d'accueil
+QString  ParametersDialogBox::getPageAccueil()
+{
+    return zoneTextePageAccueil->toPlainText();
 }

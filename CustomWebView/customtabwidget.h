@@ -28,7 +28,7 @@ private:
     CustomWebView *activeCustomWebView;
     QHBoxLayout *mainLayout;
     QTabWidget *tabWidget;
-    QAction *actionNouvelOnglet;
+    QAction *actionNouvelOnglet, *actionCloseOnglet;
     ParametersDialogBox *startUrl;
 
     

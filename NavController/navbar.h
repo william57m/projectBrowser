@@ -6,7 +6,7 @@
 #include <QToolBar>
 #include "navcontroller.h"
 #include "favright.h"
-
+#include "QMainWindow"
 class NavBar : public QWidget
 {
     Q_OBJECT
@@ -27,9 +27,13 @@ public:
     void mouseMoveEvent(QMouseEvent *);
 
     //ludo
-    void delFavright();
-    void createFavright();
+ //   void delFavright();
+  //  void createFavright();
 
+
+    //TEST
+    void newFavRight();
+    void delFavRight();
     
 signals:
     void survolNavBar();

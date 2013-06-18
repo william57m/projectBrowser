@@ -82,16 +82,27 @@ void MainWindow::changeURL()
 void MainWindow::loadFav(int idBtn)
 {
     customTabWidget->getActiveTab()->getWebView()->load(navBar->getFavRight()->getFavFromBtn(idBtn));
+
 }
 void MainWindow::delFav(int idxBtnDel)
 {
     navBar->getFavRight()->deleteFavFromBtn(idxBtnDel);
+
+    //TEST
+    navBar->delFavRight();
+    navBar->newFavRight();
+
+    //Connect to load bm from button
+    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
 
 }
 
 // ################ Detect survol for show/hide navBar ###############
 void MainWindow::survolNavBar()
 {
+
+
     // Show navController and favRight
     navBar->getNavController()->setHidden(false);
     navBar->getFavRight()->setHidden(false);
@@ -99,10 +110,21 @@ void MainWindow::survolNavBar()
     // Set size
     navBar->setMinimumHeight(50);
     navBar->setMaximumHeight(50);
+
+
+    navBar->delFavRight();
+    navBar->newFavRight();
+
+    //Connect to load bm from button
+    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
+
+
 }
 
 void MainWindow::survolWebView()
 {
+
     // Hide navController and favRight
     navBar->getNavController()->setHidden(true);
     navBar->getFavRight()->setHidden(true);
@@ -110,9 +132,19 @@ void MainWindow::survolWebView()
     // Set size
     navBar->setMinimumHeight(20);
     navBar->setMaximumHeight(20);
+
+    navBar->delFavRight();
+    navBar->newFavRight();
+
+    //Connect to load bm from button
+    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
+
+
 }
 
 void MainWindow::changeTittle(QString url)
 {
     this->setWindowTitle(url);
+
 }

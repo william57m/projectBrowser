@@ -12,7 +12,6 @@
 #include "customwidget.h"
 #include<QDebug>
 #include <iostream>
-
 class FavRight : public QWidget
 {
     Q_OBJECT
@@ -36,6 +35,9 @@ public:
     QButtonGroup *getButtonFavDel();
     QButtonGroup *getButtonFav();
 
+
+
+    void deleButton();
 
 private:
 

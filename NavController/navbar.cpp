@@ -53,3 +53,18 @@ FavRight* NavBar::getFavRight()
     return favRight;
 }
 
+
+//TEST
+void NavBar::newFavRight()
+{
+    favRight = new FavRight(this);
+    favRight->defineFavWiget();
+    favRight->readFav();
+    mainLayout->addWidget(favRight);
+}
+
+void NavBar::delFavRight()
+{
+    mainLayout->removeWidget(favRight);
+    delete favRight;
+}

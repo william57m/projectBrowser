@@ -78,8 +78,7 @@ FavRight *FavRight::getWebView(QWebView *qWv)
 
 void FavRight::readFav()
 {
-
-    if(etatLayoutFav==true)
+   if(etatLayoutFav==true)
     {
         favsLayout->removeWidget(favWidget);
         favsLayout->deleteLater();
@@ -92,7 +91,7 @@ void FavRight::readFav()
     settingFavs = new QSettings("UTBMGL40", "BrowserGL");
     urlFav = new QStringList(settingFavs->value("Favoris/url").value<QStringList>());
     titleFav =  new QStringList(settingFavs->value("Favoris/titre").value<QStringList>());
-    favsLayout = new QGridLayout();
+    favsLayout = new QGridLayout(this);
     nbFav = favsLayout->columnCount();
     favWidget->setLayout(favsLayout);
     std::cout<<"Dans readFav : "<<urlFav->size()<<std::endl;
@@ -101,6 +100,7 @@ void FavRight::readFav()
     QString favS;
     favS= QChar(0x17,0x27);
     /*-------------*/
+
     for(int i=0; i<urlFav->size();++i)
     {
         QPushButton *btnAddFav[urlFav->size()];
@@ -151,4 +151,5 @@ QButtonGroup *FavRight::getButtonFavDel()
 {
     return grpButtonFavDel;
 }
+
 

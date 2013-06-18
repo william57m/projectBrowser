@@ -126,8 +126,6 @@ void MainWindow::survolNavBar()
     connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
 
 
-
-<<<<<<< HEAD
     /*if(!navBar->getFavRight()->isHidden())
     {
 
@@ -139,9 +137,8 @@ void MainWindow::survolNavBar()
         connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
     }
     */
-=======
 
->>>>>>> 3b14468247e288e9b44a493bbda54404f4aea242
+
 }
 
 void MainWindow::survolWebView()

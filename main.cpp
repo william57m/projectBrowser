@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     MainWindow mw;
     mw.showNormal();
 
+    // Execute app
     return app.exec();
 }
 

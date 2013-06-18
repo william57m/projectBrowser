@@ -86,9 +86,6 @@ void CustomWebView::openRCM(QContextMenuEvent *event)
         rcm->getBtn(1)->enable(true);
     }
 
-    // DEBUG
-    cout << "// DEBUG TOP BUTTON\nitemClick: " << itemClick << endl;
-
     // ############## Enable/Disable back/next buttons #############
 
     if(webView->page()->history()->backItems(10).length() > 0) // Back possible
@@ -178,16 +175,12 @@ void CustomWebView::clickItem(int b)
 
         settingFavs->setValue("Favoris/titre",*titleFav<<getWebView()->title().toStdString().c_str());
         settingFavs->setValue("Favoris/url", *urlFav<<getWebView()->url().toString());
-        //settingFavs->setValue("Favoris/nbClick", *nbClick<<0);
-        std::cout<<this->getWebView()->title().toStdString()<<std::endl;
-        std::cout<<this->getWebView()->url().toString().toStdString()<<std::endl;
         break;
 
     case 315:
 
         webView->forward();
         break;
-
     }
 }
 

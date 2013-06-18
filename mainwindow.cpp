@@ -116,14 +116,15 @@ void MainWindow::survolNavBar()
     navBar->setMaximumHeight(50);
 
 
-    navBar->delFavRight();
-    navBar->newFavRight();
+    if(!navBar->getFavRight()->isHidden())
+    {
+        navBar->delFavRight();
+        navBar->newFavRight();
 
-    //Connect to load bm from button
-    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
-    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
-
-
+        //Connect to load bm from button
+        connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+        connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
+    }
 }
 
 void MainWindow::survolWebView()
@@ -135,6 +136,7 @@ void MainWindow::survolWebView()
     // Set size
     navBar->setMinimumHeight(20);
     navBar->setMaximumHeight(20);
+
 
 
 }

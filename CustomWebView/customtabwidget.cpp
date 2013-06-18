@@ -89,13 +89,11 @@ void CustomTabWidget::nouvelOnglet()
 void CustomTabWidget::fermerOnglet()
 {
     int cId = tabWidget->indexOf(tabWidget->currentWidget());
-    qDebug() << "Onglet élu = " << cId;
     //Delete the red cross on the tab when you delete one of the 2 remaining tabs
     if(tabWidget->count()==2)
     {
          tabWidget->setTabsClosable(false);
     }
-
     tabWidget->removeTab(tabWidget->currentIndex());
 }
 

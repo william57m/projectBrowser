@@ -65,7 +65,6 @@ void FavRight::defineFavWiget()
     mappedPoint = mapToGlobal(QPoint(0,0));
     int mx = mappedPoint.x();
     int my = mappedPoint.y();
-    qDebug() << length;
     favWidget->setGeometry(mx-275,my+25,300,length);
     favWidget->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
 }
@@ -94,7 +93,6 @@ void FavRight::readFav()
     favsLayout = new QGridLayout(this);
     nbFav = favsLayout->columnCount();
     favWidget->setLayout(favsLayout);
-    std::cout<<"Dans readFav : "<<urlFav->size()<<std::endl;
     etatLayoutFav=true;
     /* Init fav icon */
     QString favS;
@@ -119,7 +117,6 @@ void FavRight::readFav()
         favsLayout->addWidget(grpButtonFav->buttons().at(i),i,0,1,5);
         favsLayout->addWidget(grpButtonFavDel->buttons().at(i),i,6,1,1);
 
-        std::cout<<"push ok "<<std::endl;
     }
 }
 

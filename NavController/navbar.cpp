@@ -54,7 +54,6 @@ FavRight* NavBar::getFavRight()
 }
 
 
-//TEST
 void NavBar::newFavRight()
 {
     favRight = new FavRight(this);

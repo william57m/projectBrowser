@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QPainter>
-#include <iostream>
 #include <QLabel>
 
 class RectButton : public QWidget

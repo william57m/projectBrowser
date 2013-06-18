@@ -26,12 +26,6 @@ RectButton::RectButton(int w, int h, int x, int y, QWidget *parent) :
     // Connection
     connect(this, SIGNAL(mouseMove()), this, SLOT(repaint()));
     connect(this, SIGNAL(click(int)), this->parent()->parent(), SLOT(clickItem(int)));
-
-    // Color
-    QPalette p(palette());
-    p.setColor(QPalette::Background, Qt::gray);
-    //this->setAutoFillBackground(true);
-    //this->setPalette(p);
 }
 
 // ###################################################################
@@ -39,20 +33,19 @@ RectButton::RectButton(int w, int h, int x, int y, QWidget *parent) :
 // ###################################################################
 void RectButton::paintEvent(QPaintEvent *)
 {
+    // Init QPainter
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setBrush(Qt::black);
+
     if(i==0)
     {
-        QPainter painter(this);
-        painter.setRenderHint(QPainter::Antialiasing, true);
         painter.setOpacity(0.5);
-        painter.setBrush(Qt::black);
         painter.drawRect(x, y, 40, 40);
     }
     else
     {
-        QPainter painter(this);
-        painter.setRenderHint(QPainter::Antialiasing, true);
         painter.setOpacity(0.7);
-        painter.setBrush(Qt::black);
         painter.drawRect(x-3,y-3, 46, 46);
     }
 }
@@ -74,6 +67,12 @@ void RectButton::mouseMoveEvent(QMouseEvent *)
 
 void RectButton::leaveEvent(QEvent * event)
 {
+    // Unused
+    Q_UNUSED(event);
+
+    // Set i
     i=0;
+
+    // Emit signal
     emit mouseMove();
 }

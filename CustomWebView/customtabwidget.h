@@ -1,5 +1,6 @@
 #ifndef CUSTOMTABWIDGET_H
 #define CUSTOMTABWIDGET_H
+
 #include "CustomWebView/customwebview.h"
 #include <QBoxLayout>
 #include <QWidget>
@@ -9,6 +10,8 @@
 #include <QTabBar>
 #include <QTabWidget>
 #include <iostream>
+#include "ParamDialogBox/parametersdialogbox.h"
+
 using namespace std;
 
 class CustomTabWidget : public QWidget
@@ -16,7 +19,7 @@ class CustomTabWidget : public QWidget
     Q_OBJECT
 public:
     // Constructor
-    explicit CustomTabWidget(QWidget *parent = 0);
+    explicit CustomTabWidget(QWidget *parent = 0, ParametersDialogBox *startUrl = 0);
 
     //Getter
     CustomWebView *getActiveTab();
@@ -26,6 +29,8 @@ private:
     QHBoxLayout *mainLayout;
     QTabWidget *tabWidget;
     QAction *actionNouvelOnglet;
+    ParametersDialogBox *startUrl;
+
     
 signals:
 

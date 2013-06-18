@@ -23,10 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     menuBar->addMenu(menuFile);
     menuFile->addAction(menuParam);
 
-    connect(menuParam, SIGNAL(triggered()), this, SLOT(showParamDialog()));
-
     // Init parameters dialog box
     paramDialog = new ParametersDialogBox(this);
+    QUrl *startUrl = new QUrl(paramDialog->getPageAccueil());
 
     // Nav controller
     navBar = new NavBar(this);
@@ -34,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     navBar->setMouseTracking(true);
 
     // Web engine
-    customTabWidget = new CustomTabWidget(this);
+    customTabWidget = new CustomTabWidget(this,paramDialog);
 
     // Add items to main layout
     mainLayout->addWidget(navBar);
@@ -42,6 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Set central widget
     this->setCentralWidget(centralWidget);
+
+    // Connect button to show paramDialog
+    connect(menuParam, SIGNAL(triggered()), this, SLOT(showParamDialog()));
 
     // Connect action from navController to webView
     connect(navBar->getNavController()->getBtnGoUrl(), SIGNAL(clicked()), this, SLOT(goURL()));
@@ -63,8 +65,12 @@ MainWindow::MainWindow(QWidget *parent) :
 // ###################### Show parameters dialog #####################
 void MainWindow::showParamDialog()
 {
-    std::cout << "Show param dialog" << std::endl;
     paramDialog->exec();
+}
+
+void MainWindow::getParamDialog()
+{
+    return paramDialog;
 }
 
 // ################## Slot to interact on web view ###################
@@ -88,13 +94,11 @@ void MainWindow::delFav(int idxBtnDel)
 {
     navBar->getFavRight()->deleteFavFromBtn(idxBtnDel);
 
-    //TEST
+
     navBar->delFavRight();
     navBar->newFavRight();
 
-    //Connect to load bm from button
-    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
-    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
+
 
 }
 
@@ -124,7 +128,6 @@ void MainWindow::survolNavBar()
 
 void MainWindow::survolWebView()
 {
-
     // Hide navController and favRight
     navBar->getNavController()->setHidden(true);
     navBar->getFavRight()->setHidden(true);
@@ -132,13 +135,6 @@ void MainWindow::survolWebView()
     // Set size
     navBar->setMinimumHeight(20);
     navBar->setMaximumHeight(20);
-
-    navBar->delFavRight();
-    navBar->newFavRight();
-
-    //Connect to load bm from button
-    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
-    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
 
 
 }
@@ -148,3 +144,5 @@ void MainWindow::changeTittle(QString url)
     this->setWindowTitle(url);
 
 }
+
+

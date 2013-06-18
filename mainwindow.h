@@ -46,6 +46,7 @@ public slots:
     void survolNavBar();
     void survolWebView();
     void changeURL();
+    void getParamDialog();
 
     void goURL();
 

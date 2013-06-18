@@ -75,31 +75,27 @@ void CamembertButton::enable(bool e)
 // ###################################################################
 void CamembertButton::paintEvent(QPaintEvent *)
 {
+    // Init QPainter
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setBrush(Qt::black);
+
     if(enabled)
     {
         if(i==0)
         {
-            QPainter painter(this);
-            painter.setRenderHint(QPainter::Antialiasing, true);
             painter.setOpacity(0.6);
-            painter.setBrush(Qt::black);
             painter.drawPie(x,y,100,100,base*16,orientation*16);
         }
         else // Agrandis
         {
-            QPainter painter(this);
-            painter.setRenderHint(QPainter::Antialiasing, true);
             painter.setOpacity(0.85);
-            painter.setBrush(Qt::black);
             painter.drawPie(x-5,y-5,110,110,base*16,orientation*16);
         }
     }
     else
     {
-        QPainter painter(this);
-        painter.setRenderHint(QPainter::Antialiasing, true);
         painter.setOpacity(0.2);
-        painter.setBrush(Qt::black);
         painter.drawPie(x,y,100,100,base*16,orientation*16);
     }
 
@@ -120,6 +116,9 @@ void CamembertButton::mouseMoveEvent(QMouseEvent *)
 
 void CamembertButton::leaveEvent(QEvent * event)
 {
+    // Unused
+    Q_UNUSED(event);
+
     // RAZ i
     i=0;
 

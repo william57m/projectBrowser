@@ -1,14 +1,17 @@
 #include "customtabwidget.h"
+#include <QDebug>
+#include <iostream>
 
 // ###################################################################
 // CONSTRUCTOR
 // ###################################################################
-CustomTabWidget::CustomTabWidget(QWidget *parent) :
+CustomTabWidget::CustomTabWidget(QWidget *parent, ParametersDialogBox *startUrl) :
     QWidget(parent)
 {
 
     // Enable mouse tracking
     this->setMouseTracking(true);
+    this->startUrl = startUrl;
 
     // Main Layout
     mainLayout = new QHBoxLayout(this);
@@ -18,23 +21,27 @@ CustomTabWidget::CustomTabWidget(QWidget *parent) :
     tabWidget = new QTabWidget;
 
     //Button to add tabs
-    QToolButton *toolb = new QToolButton(tabWidget);
-    toolb->setAutoRaise(true);
-    toolb->setText("+");
-    tabWidget->setCornerWidget(toolb, Qt::TopLeftCorner);
+    //QToolButton *toolb = new QToolButton(tabWidget);
+    //toolb->setVisible(false);
+    //toolb->setAutoRaise(true);
+    //toolb->setText("+");
+    //tabWidget->setCornerWidget(toolb, Qt::TopLeftCorner);
 
     //Ctrl-T shortcut to add tab
     actionNouvelOnglet = new QAction(tr("Nouvel onglet"), this);
-    toolb->addAction(actionNouvelOnglet);
+    tabWidget->addAction(actionNouvelOnglet);
     actionNouvelOnglet->setShortcut(QKeySequence("Ctrl+T"));
 
     //Creation of the first initial tab
     nouvelOnglet();
 
     //Click, shortcut connections to create/delete tabs
-    connect(toolb, SIGNAL(clicked()), this, SLOT(nouvelOnglet()));
+    //connect(toolb, SIGNAL(clicked()), this, SLOT(nouvelOnglet()));
     connect(actionNouvelOnglet, SIGNAL(triggered()), this, SLOT(nouvelOnglet()));
+
+
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(fermerOnglet()));
+
 
     // To modify (Work just for the first tab)
     connect(activeCustomWebView, SIGNAL(clickNewTab()), this, SLOT(nouvelOnglet()));
@@ -53,12 +60,12 @@ void CustomTabWidget::nouvelOnglet()
     }
 
     //CustomWebView creation and tab addition
-    activeCustomWebView = new CustomWebView(this, this->parent());
+    activeCustomWebView = new CustomWebView(this, this->parent(),(new QUrl(startUrl->getPageAccueil())));
+
     QString nomUrl = activeCustomWebView->getLoadedUrl()->toString();
-
-
-    QIcon* iconUrl = new QIcon(nomUrl + "favicon.ico");
+    QIcon* iconUrl = new QIcon(nomUrl + "favicon.ico");   
     QIcon iconUrl2=QWebSettings::iconForUrl(QUrl(nomUrl));
+
     //QTabBar *tabBar = tabWidget->findChild<QTabBar *>(QLatin1String("qt_tabwidget_tabbar"));
     //tabBar->setTabButton(0, QTabBar::LeftSide, iconUrl2);
 
@@ -75,6 +82,8 @@ void CustomTabWidget::nouvelOnglet()
 
 void CustomTabWidget::fermerOnglet()
 {
+    int cId = tabWidget->indexOf(tabWidget->currentWidget());
+    qDebug() << "Onglet élu = " << cId;
     //Delete the red cross on the tab when you delete one of the 2 remaining tabs
     if(tabWidget->count()==2)
     {

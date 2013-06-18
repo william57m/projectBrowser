@@ -1,5 +1,4 @@
 #include "webviewmousetracking.h"
-#include <iostream>
 
 // ###################################################################
 // CONSTRUCTOR
@@ -25,13 +24,14 @@ WebViewMouseTracking::WebViewMouseTracking(QWidget *parent) :
 // ###################################################################
 // EVENTS
 // ###################################################################
-void WebViewMouseTracking::mouseMoveEvent(QMouseEvent *)
+
+void WebViewMouseTracking::enterEvent (QEvent *event)
 {
+    Q_UNUSED(event);
     emit mouseMoveWebView();
 }
 
 void WebViewMouseTracking::contextMenuEvent(QContextMenuEvent * event)
 {
-    std::cout << "Passage CONTEXT MENU EVENT" << std::endl;
     emit rightClick(event);
 }

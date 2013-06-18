@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     navBar->setMouseTracking(true);
 
     // Web engine
-    customTabWidget = new CustomTabWidget(this,startUrl);
+    customTabWidget = new CustomTabWidget(this,paramDialog);
 
     // Add items to main layout
     mainLayout->addWidget(navBar);

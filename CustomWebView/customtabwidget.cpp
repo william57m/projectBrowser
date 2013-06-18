@@ -5,7 +5,7 @@
 // ###################################################################
 // CONSTRUCTOR
 // ###################################################################
-CustomTabWidget::CustomTabWidget(QWidget *parent, QUrl *startUrl) :
+CustomTabWidget::CustomTabWidget(QWidget *parent, ParametersDialogBox *startUrl) :
     QWidget(parent)
 {
 
@@ -59,7 +59,7 @@ void CustomTabWidget::nouvelOnglet()
     }
 
     //CustomWebView creation and tab addition
-    activeCustomWebView = new CustomWebView(this, this->parent(),startUrl);
+    activeCustomWebView = new CustomWebView(this, this->parent(),(new QUrl(startUrl->getPageAccueil())));
 
     QString nomUrl = activeCustomWebView->getLoadedUrl()->toString();
     QIcon* iconUrl = new QIcon(nomUrl + "favicon.ico");   

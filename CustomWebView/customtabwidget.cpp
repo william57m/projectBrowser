@@ -32,12 +32,18 @@ CustomTabWidget::CustomTabWidget(QWidget *parent, ParametersDialogBox *startUrl)
     tabWidget->addAction(actionNouvelOnglet);
     actionNouvelOnglet->setShortcut(QKeySequence("Ctrl+T"));
 
+    //Ctrl-W shortcut to close tab
+    actionCloseOnglet = new QAction(tr("Fermer onglet"), this);
+    tabWidget->addAction(actionCloseOnglet);
+    actionCloseOnglet->setShortcut(QKeySequence("Ctrl+W"));
+
     //Creation of the first initial tab
     nouvelOnglet();
 
     //Click, shortcut connections to create/delete tabs
     //connect(toolb, SIGNAL(clicked()), this, SLOT(nouvelOnglet()));
     connect(actionNouvelOnglet, SIGNAL(triggered()), this, SLOT(nouvelOnglet()));
+    connect(actionCloseOnglet, SIGNAL(triggered()), this, SLOT(fermerOnglet()));
 
 
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(fermerOnglet()));

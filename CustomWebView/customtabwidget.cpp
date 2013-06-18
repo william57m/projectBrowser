@@ -22,8 +22,9 @@ CustomTabWidget::CustomTabWidget(QWidget *parent, ParametersDialogBox *startUrl)
 
     //Button to add tabs
     QToolButton *toolb = new QToolButton(tabWidget);
+    //toolb->setVisible(false);
     toolb->setAutoRaise(true);
-    toolb->setText("+");
+    //toolb->setText("+");
     tabWidget->setCornerWidget(toolb, Qt::TopLeftCorner);
 
     //Ctrl-T shortcut to add tab

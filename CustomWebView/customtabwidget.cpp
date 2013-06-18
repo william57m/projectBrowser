@@ -21,22 +21,22 @@ CustomTabWidget::CustomTabWidget(QWidget *parent, ParametersDialogBox *startUrl)
     tabWidget = new QTabWidget;
 
     //Button to add tabs
-    QToolButton *toolb = new QToolButton(tabWidget);
+    //QToolButton *toolb = new QToolButton(tabWidget);
     //toolb->setVisible(false);
-    toolb->setAutoRaise(true);
+    //toolb->setAutoRaise(true);
     //toolb->setText("+");
-    tabWidget->setCornerWidget(toolb, Qt::TopLeftCorner);
+    //tabWidget->setCornerWidget(toolb, Qt::TopLeftCorner);
 
     //Ctrl-T shortcut to add tab
     actionNouvelOnglet = new QAction(tr("Nouvel onglet"), this);
-    toolb->addAction(actionNouvelOnglet);
+    tabWidget->addAction(actionNouvelOnglet);
     actionNouvelOnglet->setShortcut(QKeySequence("Ctrl+T"));
 
     //Creation of the first initial tab
     nouvelOnglet();
 
     //Click, shortcut connections to create/delete tabs
-    connect(toolb, SIGNAL(clicked()), this, SLOT(nouvelOnglet()));
+    //connect(toolb, SIGNAL(clicked()), this, SLOT(nouvelOnglet()));
     connect(actionNouvelOnglet, SIGNAL(triggered()), this, SLOT(nouvelOnglet()));
 
 

@@ -77,11 +77,20 @@ void MainWindow::getParamDialog()
 void MainWindow::goURL()
 {
     customTabWidget->getActiveTab()->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
+
+
 }
 
 void MainWindow::changeURL()
 {
     navBar->getNavController()->getUrlBar()->setText(customTabWidget->getActiveTab()->getWebView()->url().toString());
+    navBar->delFavRight();
+    navBar->newFavRight();
+
+      //Connect to load bm from button
+     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+     connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
+
 }
 
 // ######################## Manage Favorites #########################
@@ -113,7 +122,12 @@ void MainWindow::survolNavBar()
     navBar->setMinimumHeight(50);
     navBar->setMaximumHeight(50);
 
+    connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
+    connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
 
+
+
+<<<<<<< HEAD
     /*if(!navBar->getFavRight()->isHidden())
     {
 
@@ -125,6 +139,9 @@ void MainWindow::survolNavBar()
         connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
     }
     */
+=======
+
+>>>>>>> 3b14468247e288e9b44a493bbda54404f4aea242
 }
 
 void MainWindow::survolWebView()

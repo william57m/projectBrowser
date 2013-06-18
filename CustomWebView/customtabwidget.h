@@ -11,6 +11,7 @@
 #include <QTabWidget>
 #include <iostream>
 
+
 using namespace std;
 
 class CustomTabWidget : public QWidget
@@ -18,7 +19,7 @@ class CustomTabWidget : public QWidget
     Q_OBJECT
 public:
     // Constructor
-    explicit CustomTabWidget(QWidget *parent = 0);
+    explicit CustomTabWidget(QWidget *parent = 0, QUrl *startUrl = 0);
 
     //Getter
     CustomWebView *getActiveTab();
@@ -28,6 +29,8 @@ private:
     QHBoxLayout *mainLayout;
     QTabWidget *tabWidget;
     QAction *actionNouvelOnglet;
+    QUrl *startUrl;
+
     
 signals:
 

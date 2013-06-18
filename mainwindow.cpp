@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Init parameters dialog box
     paramDialog = new ParametersDialogBox(this);
+    QUrl *startUrl = new QUrl(paramDialog->getPageAccueil());
 
     // Nav controller
     navBar = new NavBar(this);
@@ -32,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     navBar->setMouseTracking(true);
 
     // Web engine
-    customTabWidget = new CustomTabWidget(this);
+    customTabWidget = new CustomTabWidget(this,startUrl);
 
     // Add items to main layout
     mainLayout->addWidget(navBar);
@@ -65,6 +66,11 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::showParamDialog()
 {
     paramDialog->exec();
+}
+
+void MainWindow::getParamDialog()
+{
+    return paramDialog;
 }
 
 // ################## Slot to interact on web view ###################
@@ -115,3 +121,5 @@ void MainWindow::changeTittle(QString url)
 {
     this->setWindowTitle(url);
 }
+
+

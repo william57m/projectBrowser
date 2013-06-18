@@ -3,11 +3,12 @@
 // ###################################################################
 // CONSTRUCTOR
 // ###################################################################
-CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
+CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent, QUrl *startUrl) :
     QWidget(parent)
 {
     // Get real parent
     this->realParent = realParent;
+    this->startUrl = startUrl;
 
     // Enable mouse tracking
     this->setMouseTracking(true);
@@ -18,7 +19,9 @@ CustomWebView::CustomWebView(QWidget *parent, QWidget *realParent) :
 
     // Init web view
     webView = new WebViewMouseTracking(this);
-    loadedUrl = new QUrl("http://www.google.com/");
+
+    //QUrl startUrl = parent->getParamDialog.getPageAccueil();
+    loadedUrl = startUrl;
     webView->load(*loadedUrl);
     webView->setMinimumSize(500,300);
 

@@ -1,4 +1,6 @@
 #include "parametersdialogbox.h"
+#include <QDebug>
+#include <iostream>
 
 // ###################################################################
 // CONSTRUCTOR
@@ -23,6 +25,7 @@ ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
     // Init buttons
     btnApply = new QPushButton("Appliquer");
     btnValide = new QPushButton("OK");
+    connect(btnValide, SIGNAL(clicked()), this, SLOT(close()));
     btnCancel = new QPushButton("Annuler");
 
     // Main Layout
@@ -47,7 +50,8 @@ ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
     QLabel *labelPageAccueil = new QLabel("Page d'accueil : ",generalWidget);
     labelPageAccueil->setGeometry(20,20,460,20);
 
-    zoneTextePageAccueil = new QTextEdit("http://www.",generalWidget);
+    zoneTextePageAccueil = new QTextEdit("http://www.google.com",generalWidget);
+    qDebug() << zoneTextePageAccueil->toPlainText();
     zoneTextePageAccueil->setGeometry(20,50,430,23);
 }
 
@@ -55,5 +59,6 @@ ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
 //Getter page d'accueil
 QString  ParametersDialogBox::getPageAccueil()
 {
+
     return zoneTextePageAccueil->toPlainText();
 }

@@ -32,6 +32,7 @@ private:
     QWidget *realParent;
     QUrl *loadedUrl;
     int itemClick;
+    QUrl *startUrl;
 
     // Favorites manage
     QSettings *settingFavs;
@@ -41,7 +42,7 @@ private:
 
 public:
     // Constructor
-    explicit CustomWebView(QWidget *parent = 0, QWidget *realParent = 0);
+    explicit CustomWebView(QWidget *parent = 0, QWidget *realParent = 0, QUrl *startUrl = 0);
 
     // Getter
     QWebView* getWebView();

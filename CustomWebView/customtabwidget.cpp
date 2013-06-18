@@ -1,14 +1,17 @@
 #include "customtabwidget.h"
+#include <QDebug>
+#include <iostream>
 
 // ###################################################################
 // CONSTRUCTOR
 // ###################################################################
-CustomTabWidget::CustomTabWidget(QWidget *parent) :
+CustomTabWidget::CustomTabWidget(QWidget *parent, QUrl *startUrl) :
     QWidget(parent)
 {
 
     // Enable mouse tracking
     this->setMouseTracking(true);
+    this->startUrl = startUrl;
 
     // Main Layout
     mainLayout = new QHBoxLayout(this);
@@ -34,7 +37,10 @@ CustomTabWidget::CustomTabWidget(QWidget *parent) :
     //Click, shortcut connections to create/delete tabs
     connect(toolb, SIGNAL(clicked()), this, SLOT(nouvelOnglet()));
     connect(actionNouvelOnglet, SIGNAL(triggered()), this, SLOT(nouvelOnglet()));
+
+
     connect(tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(fermerOnglet()));
+
 
     // To modify (Work just for the first tab)
     connect(activeCustomWebView, SIGNAL(clickNewTab()), this, SLOT(nouvelOnglet()));
@@ -53,12 +59,12 @@ void CustomTabWidget::nouvelOnglet()
     }
 
     //CustomWebView creation and tab addition
-    activeCustomWebView = new CustomWebView(this, this->parent());
+    activeCustomWebView = new CustomWebView(this, this->parent(),startUrl);
+
     QString nomUrl = activeCustomWebView->getLoadedUrl()->toString();
-
-
-    QIcon* iconUrl = new QIcon(nomUrl + "favicon.ico");
+    QIcon* iconUrl = new QIcon(nomUrl + "favicon.ico");   
     QIcon iconUrl2=QWebSettings::iconForUrl(QUrl(nomUrl));
+
     //QTabBar *tabBar = tabWidget->findChild<QTabBar *>(QLatin1String("qt_tabwidget_tabbar"));
     //tabBar->setTabButton(0, QTabBar::LeftSide, iconUrl2);
 
@@ -75,6 +81,8 @@ void CustomTabWidget::nouvelOnglet()
 
 void CustomTabWidget::fermerOnglet()
 {
+    int cId = tabWidget->indexOf(tabWidget->currentWidget());
+    qDebug() << "Onglet élu = " << cId;
     //Delete the red cross on the tab when you delete one of the 2 remaining tabs
     if(tabWidget->count()==2)
     {

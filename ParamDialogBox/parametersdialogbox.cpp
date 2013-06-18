@@ -50,7 +50,7 @@ ParametersDialogBox::ParametersDialogBox(QWidget *parent) :
     QLabel *labelPageAccueil = new QLabel("Page d'accueil : ",generalWidget);
     labelPageAccueil->setGeometry(20,20,460,20);
 
-    zoneTextePageAccueil = new QTextEdit("http://www.google.com",generalWidget);
+    zoneTextePageAccueil = new QTextEdit("http://www.google.com", generalWidget);
     qDebug() << zoneTextePageAccueil->toPlainText();
     zoneTextePageAccueil->setGeometry(20,50,430,23);
 }

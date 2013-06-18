@@ -105,8 +105,6 @@ void MainWindow::delFav(int idxBtnDel)
 // ################ Detect survol for show/hide navBar ###############
 void MainWindow::survolNavBar()
 {
-
-
     // Show navController and favRight
     navBar->getNavController()->setHidden(false);
     navBar->getFavRight()->setHidden(false);
@@ -116,15 +114,17 @@ void MainWindow::survolNavBar()
     navBar->setMaximumHeight(50);
 
 
-    if(!navBar->getFavRight()->isHidden())
+    /*if(!navBar->getFavRight()->isHidden())
     {
+
         navBar->delFavRight();
         navBar->newFavRight();
 
-        //Connect to load bm from button
+        // Connect to load bm from button
         connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
         connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
     }
+    */
 }
 
 void MainWindow::survolWebView()

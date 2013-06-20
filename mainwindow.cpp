@@ -120,6 +120,9 @@ void MainWindow::survolNavBar()
     navBar->setMinimumHeight(50);
     navBar->setMaximumHeight(50);
 
+    navBar->newFavRight();
+
+
     connect(navBar->getFavRight()->getButtonFav(),SIGNAL(buttonClicked(int)),this,SLOT(loadFav(int)));
     connect(navBar->getFavRight()->getButtonFavDel(),SIGNAL(buttonClicked(int)),this,SLOT(delFav(int)));
 
@@ -148,8 +151,6 @@ void MainWindow::survolWebView()
     // Set size
     navBar->setMinimumHeight(20);
     navBar->setMaximumHeight(20);
-
-
 
 }
 

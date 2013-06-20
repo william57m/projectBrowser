@@ -77,7 +77,7 @@ FavRight *FavRight::getWebView(QWebView *qWv)
 
 void FavRight::readFav()
 {
-   if(etatLayoutFav==true)
+    if(etatLayoutFav==true)
     {
         favsLayout->removeWidget(favWidget);
         favsLayout->deleteLater();

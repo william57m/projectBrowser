@@ -77,8 +77,6 @@ void MainWindow::getParamDialog()
 void MainWindow::goURL()
 {
     customTabWidget->getActiveTab()->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
-
-
 }
 
 void MainWindow::changeURL()
@@ -161,4 +159,11 @@ void MainWindow::changeTittle(QString url)
 
 }
 
+
+
+// Slot
+void MainWindow::slotGoUrl()
+{
+    customTabWidget->getActiveTab()->getWebView()->load(navBar->getNavController()->getUrlBar()->text());
+}
 

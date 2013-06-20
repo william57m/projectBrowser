@@ -51,7 +51,7 @@ public slots:
     void goURL();
 
     void showParamDialog();
-
+    void slotGoUrl();
     void changeTittle(QString urlTitle);
 
     //ludo

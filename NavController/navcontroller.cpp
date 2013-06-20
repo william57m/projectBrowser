@@ -1,4 +1,6 @@
 #include "navcontroller.h"
+#include <QAction>
+#include <iostream>
 
 // ###################################################################
 // CONSTRUCTOR
@@ -10,6 +12,14 @@ NavController::NavController(QWidget *parent) :
     goUrl = new QPushButton("Go");
     urlBar = new QLineEdit;
 
+    // TEST
+    QAction *actionGoUrl = new QAction(tr("Go"), this);
+    actionGoUrl->setShortcut(Qt::Key_Return);
+    urlBar->addAction(actionGoUrl);
+
+    // CODE
+    connect(actionGoUrl, SIGNAL(triggered()), this->parent()->parent(), SLOT(slotGoUrl()));
+
     // Set property items
     urlBar->setText("http://");
 
@@ -19,7 +29,7 @@ NavController::NavController(QWidget *parent) :
 
     // Add items to mainLayout
     mainLayout->addWidget(urlBar);
-    mainLayout->addWidget(goUrl);
+    //mainLayout->addWidget(goUrl);
 
     // Color
     QPalette p(palette());

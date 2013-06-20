@@ -27,7 +27,7 @@ public:
     void mouseMoveEvent(QMouseEvent *);
 
     //ludo
- //   void delFavright();
+ //void delFavright();
   //  void createFavright();
 
 
